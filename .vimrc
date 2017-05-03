@@ -27,8 +27,8 @@ Plugin 'vim-airline/vim-airline-themes'
 " File Manager within vim
 Plugin 'scrooloose/nerdtree'
 
-" Syntax checking/highlighting
-" Plugin 'vim-syntastic/syntastic'
+" Fuzzy file opener
+Plugin 'kien/ctrlp.vim'
 
 " Opens window to show tags in a file
 Plugin 'majutsushi/tagbar'
@@ -92,8 +92,8 @@ nnoremap <c-l> <c-w>l
 
 nmap <leader>w :wa<CR>
 
-" Recreate tabgs file
-map <F5> :!ctags -R<CR><CR>
+" Recreate tags file
+map <F4> :!ctags -R<CR><CR>
 
 " Open tag in preview window
 map <leader>t <C-W>}
@@ -111,8 +111,7 @@ set nospell
 " NERDTree shows hidden files by default
 
 let NERDTreeShowHidden=1
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
+nnoremap <F7> :NERDTreeToggle<CR>
 
 
 
@@ -186,7 +185,7 @@ let g:ycm_global_ycm_extra_conf = '~/dev/cpp/.ycm_extra_conf.py'
 set completeopt-=preview
 " The ycmd server SHUT DOWN (restart with ':YcmRestartServer'). YCM core library compiled for Python 2 but loaded in Python 3. Set the 'g:ycm_server_python_interpreter'
 let g:ycm_server_python_interpreter = "/usr/bin/python2"
-nnoremap <F6> = :YcmForceCompileAndDiagnostics<CR>
+nnoremap <F55> = :YcmForceCompileAndDiagnostics<CR>
 
 
 
