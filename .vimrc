@@ -48,6 +48,15 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 " Smart commenting
 Plugin 'scrooloose/nerdcommenter'
 
+" Smooth Scrolling
+Plugin 'terryma/vim-smooth-scroll'
+
+" Easy moving of highlighted blocks
+Plugin 'matze/vim-move'
+
+" Automatically close brackets
+Plugin 'jiangmiao/auto-pairs'
+
 " Some colorschemes - ymmv
 Plugin 'dracula/vim'
 Plugin 'altercation/vim-colors-solarized'
@@ -74,33 +83,37 @@ set fenc=utf-8
 set termencoding=utf-8
 set ruler
 set autoindent
-" use intelligent indentation for C
 set smartindent
 set cinoptions=l1
 set tabstop=2        " tab width is 2 spaces
 set shiftwidth=2     " indent also with 2 spaces
 set textwidth=0
-syntax on
 set t_Co=256
 set number
 set showmatch
+set nospell
+highlight NonText ctermbg=none
+highlight Normal ctermbg=none
+highlight LineNr ctermbg=none
+highlight VertSplit ctermbg=none
 
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-nmap <leader>w :wa<CR>
+map <c-P> :CtrlPBufTag<CR>
 
-" Recreate tags file
-map <F4> :!ctags -R<CR><CR>
-
-" Open tag in preview window
 map <leader>t <C-W>}
-" Close preview window
 map <leader>p <C-W>z
 
-set nospell
+nmap <leader>w :wa<CR>
+
+map <F4> :!ctags -R<CR><CR>
+nnoremap <F5> = :YcmForceCompileAndDiagnostics<CR>
+nnoremap <F7> :NERDTreeToggle<CR>
+nmap <F8> :TagbarToggle<CR>
+nmap <F9> :TagbarTogglePause<CR>
 
 
 
@@ -111,7 +124,6 @@ set nospell
 " NERDTree shows hidden files by default
 
 let NERDTreeShowHidden=1
-nnoremap <F7> :NERDTreeToggle<CR>
 
 
 
@@ -124,7 +136,7 @@ nnoremap <F7> :NERDTreeToggle<CR>
 let g:airline#extensions#tabline#enabled = 1
 
 " Show buffer number in bufferline
-:let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 "" Some vim-airline hotkeys to emulate tab functionality
 set hidden
@@ -145,6 +157,8 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 nmap <leader>bl :ls<CR>
 
 let g:airline_powerline_fonts = 1
+
+set laststatus=2
 
 
 
@@ -172,8 +186,6 @@ nmap <leader>e :Errors<CR>
 """ Tagbar Config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
- nmap <F8> :TagbarToggle<CR>
- nmap <F9> :TagbarTogglePause<CR>
 
 
 
@@ -185,7 +197,6 @@ let g:ycm_global_ycm_extra_conf = '~/dev/cpp/.ycm_extra_conf.py'
 set completeopt-=preview
 " The ycmd server SHUT DOWN (restart with ':YcmRestartServer'). YCM core library compiled for Python 2 but loaded in Python 3. Set the 'g:ycm_server_python_interpreter'
 let g:ycm_server_python_interpreter = "/usr/bin/python2"
-nnoremap <F55> = :YcmForceCompileAndDiagnostics<CR>
 
 
 
@@ -204,3 +215,22 @@ let g:NERDDefaultAlign = 'left'
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" vim-smooth-scroll config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 8, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 8, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 8, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 8, 4)<CR>
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" vim move config 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:move_key_modifier = 'C'

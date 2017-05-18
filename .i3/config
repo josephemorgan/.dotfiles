@@ -121,13 +121,14 @@ bindsym $mod+minus scratchpad show
 set $tag1 "1:  Web"
 set $tag2 "2:  Dev"
 set $tag3 "3:  Media"
-set $tag0 "10:  Social"
+set $tag4 "4: Android Studio"
+set $tag0 "10: Social"
 
 # switch to workspace
 bindsym $mod+1 workspace $tag1
 bindsym $mod+2 workspace $tag2
 bindsym $mod+3 workspace $tag3
-bindsym $mod+4 workspace 4
+bindsym $mod+4 workspace $tag4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -139,7 +140,7 @@ bindsym $mod+0 workspace $tag0
 bindsym $mod+Shift+1 move container to workspace $tag1
 bindsym $mod+Shift+2 move container to workspace $tag2
 bindsym $mod+Shift+3 move container to workspace $tag3
-bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+4 move container to workspace $tag4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
@@ -181,7 +182,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-mode "$mode_system" {
+mode "System" {
 	bindsym e exec i3-msg exit, mode "default"
 		bindsym s exec i3exit suspend, mode "default"
 		bindsym h exec i3exit hibernate, mode "default"
@@ -193,7 +194,7 @@ mode "$mode_system" {
 		bindsym Escape mode "default"
 }
 
-bindsym $mod+Shift+e mode "$mode_system"
+bindsym $mod+Shift+e mode "System"
 
 mode "launch" {
 	bindsym c exec --no-startup-id chromium, mode "default"
@@ -232,7 +233,7 @@ client.background $transparent
 # Swap Caps-Lock and Escape
 exec --no-startup-id /home/joe/Scripts/keyswapper
 
-exec --no-startup-id feh --bg-scale /home/joe/Pictures/Wallpapers/yosemite.jpg
+exec --no-startup-id feh --bg-scale /home/joe/Pictures/Wallpapers/1080P-Wallpaper-10.jpg
 
 # Enable Multimedia Controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
