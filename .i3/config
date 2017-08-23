@@ -1,21 +1,16 @@
-#Joseph Morgan config file
+### - Environmental Variables - ###
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:System San Francisco Display 10
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
 set $mod Mod4
+set $term termite
 
+# Name workspaces
+set $tag1 "1:  Web"
+set $tag2 "2:  Dev"
+set $tag3 "3:  Media"
+set $tag4 "4: Android Studio"
+set $tag0 "10: Social"
+
+# Define Colors
 set $black        #282828
 set $darkblack    #1d2021
 set $darkwhite    #ffffff
@@ -33,31 +28,39 @@ set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
 
-# use these keys for focus, movement, and resize directions when reaching for
-# the arrows is not convenient
-set $up j
-set $down k
+set $up k
+set $down j
 set $left h
 set $right l
 
-# Removes window borders and sets gaps active
+
+
+### - Appearance - ###
+
+font pango:System San Francisco Display 10
 for_window [class="^.*"] border pixel 0
 gaps inner 12
 
-# use Mouse+Mod1 to drag floating windows to their wanted position
+# Colors          Border       Background Text
+client.focused    $transparent $black     $darkwhite
+client.unfocused  $transparent $black     $lightgray
+client.urgent     $transparent $darkred   $lightgray
+client.background $transparent
+
+exec --no-startup-id feh --bg-scale /home/joe/Pictures/Wallpapers/flat-deer.jpg
+
+
+
+### - Control Bindings - ###
+
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id termite
+bindsym $mod+Return exec --no-startup-id $term
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-# bindsym Mod1+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
@@ -104,25 +107,12 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym Mod1+d focus child
-
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
-
-# Name workspaces
-set $tag1 "1:  Web"
-set $tag2 "2:  Dev"
-set $tag3 "3:  Media"
-set $tag4 "4: Android Studio"
-set $tag0 "10: Social"
 
 # switch to workspace
 bindsym $mod+1 workspace $tag1
@@ -148,91 +138,11 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-assign [class="Google Play Music Desktop Player"] $tag3
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-
-# resize window (you can also use the mouse for that)
-mode "resize" {
-# These bindings trigger as soon as you enter the resize mode
-
-# Pressing left will shrink the window’s width.
-# Pressing right will grow the window’s width.
-# Pressing up will shrink the window’s height.
-# Pressing down will grow the window’s height.
-		bindsym $left       resize shrink width 10 px or 10 ppt
-		bindsym $down       resize grow height 10 px or 10 ppt
-		bindsym $up         resize shrink height 10 px or 10 ppt
-		bindsym $right      resize grow width 10 px or 10 ppt
-
-# same bindings, but for the arrow keys
-		bindsym Left        resize shrink width 10 px or 10 ppt
-		bindsym Down        resize grow height 10 px or 10 ppt
-		bindsym Up          resize shrink height 10 px or 10 ppt
-		bindsym Right       resize grow width 10 px or 10 ppt
-
-# back to normal: Enter or Escape
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
-}
-
-bindsym $mod+r mode "resize"
-
-mode "System" {
-	bindsym e exec i3-msg exit, mode "default"
-		bindsym s exec i3exit suspend, mode "default"
-		bindsym h exec i3exit hibernate, mode "default"
-		bindsym r exec systemctl reboot, mode "default"
-		bindsym Shift+s exec systemctl poweroff, mode "default"
-
-# back to normal: Enter or Escape
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
-}
-
-bindsym $mod+Shift+e mode "System"
-
-mode "launch" {
-	bindsym c exec --no-startup-id chromium, mode "default"
-
-# back to normal: Enter or Escape
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
-}
-
-bindsym $mod+c mode "launch"
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-	status_command i3status -c ~/.i3/i3status
-	position top
-	strip_workspace_numbers yes
-	colors {
-		background $bg-color
-		statusline #ffffff
-		separator #666666
-		focused_workspace $bg-color $bg-color $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-		urgent_workspace $urgent-bg-color $urgent-bg-color $text-color
-	}
-}
-
-# Colors          Border       Background Text
-client.focused    $transparent $black     $darkwhite
-client.unfocused  $transparent $black     $lightgray
-client.urgent     $transparent $darkred   $lightgray
-client.background $transparent
-
-# User Defined Modifications
-# Swap Caps-Lock and Escape
-exec --no-startup-id /home/joe/Scripts/keyswapper
-
-exec --no-startup-id feh --bg-scale /home/joe/Pictures/Wallpapers/flat-deer.jpg
 
 # Enable Multimedia Controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%; exec --no-startup-id pactl set-sink-volume 1 +5%; exec --no-startup-id pactl set-sink-volume 2 +5%;
@@ -249,6 +159,77 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 
 bindsym $mod+Shift+x exec --no-startup-id /home/joe/.i3/.lock.sh /home/joe/Pictures/Icons/lock.png
+
+
+### - Mode Definitions - ###
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+	bindsym $left       resize shrink width 10 px or 10 ppt
+	bindsym $down       resize grow height 10 px or 10 ppt
+	bindsym $up         resize shrink height 10 px or 10 ppt
+	bindsym $right      resize grow width 10 px or 10 ppt
+
+	bindsym Left        resize shrink width 10 px or 10 ppt
+	bindsym Down        resize grow height 10 px or 10 ppt
+	bindsym Up          resize shrink height 10 px or 10 ppt
+	bindsym Right       resize grow width 10 px or 10 ppt
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+mode "System" {
+	bindsym e exec i3-msg exit, mode "default"
+	bindsym s exec i3exit suspend, mode "default"
+	bindsym h exec i3exit hibernate, mode "default"
+	bindsym r exec systemctl reboot, mode "default"
+	bindsym Shift+s exec systemctl poweroff, mode "default"
+
+# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+e mode "System"
+
+mode "Launch" {
+	bindsym c exec --no-startup-id chromium, mode "default"
+	bindsym r exec --no-startup-id "i3-sensible-terminal -e ranger", mode "default"
+
+# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+bindsym $mod+c mode "Launch"
+
+
+
+### - i3bar Configuration - ###
+
+bar {
+	status_command i3status -c ~/.i3/i3status
+	position top
+	strip_workspace_numbers yes
+	colors {
+		background $bg-color
+		statusline #ffffff
+		separator #666666
+		focused_workspace $bg-color $bg-color $text-color
+		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+		urgent_workspace $urgent-bg-color $urgent-bg-color $text-color
+	}
+}
+
+
+
+### - Startup - ###
+
+# Swap Caps-Lock and Escape
+exec --no-startup-id /home/joe/Scripts/keyswapper
 
 exec --no-startup-id compton -f
 exec --no-startup-id nm-applet

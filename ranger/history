@@ -1,0 +1,9 @@
+
+delete .pki_
+open_with vim
+flat 1
+flat 0
+rename Iki3status
+renameconfig
+set colorscheme jungle
+set colorscheme snow
