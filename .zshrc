@@ -13,6 +13,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Fixes some undesirable behavior in Termite with OMZ
 export LC_CTYPE="en_US.UTF-8"
+export ANDROID_HOME="/home/joe/Android/Sdk/"
 
 # User Specified Aliases
 alias zconfig="vim ~/.zshrc"
