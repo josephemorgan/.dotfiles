@@ -2,7 +2,7 @@
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:System San Francisco Display 9
+font pango:System San Francisco Display 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -42,7 +42,7 @@ set $right l
 
 # Removes window borders and sets gaps active
 for_window [class="^.*"] border pixel 0
-gaps inner 10
+gaps inner 12
 
 # use Mouse+Mod1 to drag floating windows to their wanted position
 floating_modifier $mod
@@ -212,7 +212,6 @@ bar {
 	status_command i3status -c ~/.i3/i3status
 	position top
 	strip_workspace_numbers yes
-	font pango:System San Francisco Display 8
 	colors {
 		background $bg-color
 		statusline #ffffff
@@ -233,12 +232,14 @@ client.background $transparent
 # Swap Caps-Lock and Escape
 exec --no-startup-id /home/joe/Scripts/keyswapper
 
-exec --no-startup-id feh --bg-scale /home/joe/Pictures/Wallpapers/1080P-Wallpaper-10.jpg
+exec --no-startup-id feh --bg-scale /home/joe/Pictures/Wallpapers/flat-deer.jpg
 
 # Enable Multimedia Controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec  --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%; exec --no-startup-id pactl set-sink-volume 1 +5%; exec --no-startup-id pactl set-sink-volume 2 +5%;
+
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%; exec --no-startup-id pactl set-sink-volume 1 -5%; exec --no-startup-id pactl set-sink-volume 2 -5%;
+
+bindsym XF86AudioMute exec  --no-startup-id pactl set-sink-mute 2 toggle
 
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next

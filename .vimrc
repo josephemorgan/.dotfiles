@@ -58,6 +58,7 @@ Plugin 'matze/vim-move'
 Plugin 'jiangmiao/auto-pairs'
 
 " Some colorschemes - ymmv
+Plugin 'nanotech/jellybeans.vim'
 Plugin 'dracula/vim'
 Plugin 'altercation/vim-colors-solarized'
 
