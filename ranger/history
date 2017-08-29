@@ -1,4 +1,3 @@
-
 delete .pki_
 open_with vim
 flat 1
@@ -7,3 +6,13 @@ rename Iki3status
 renameconfig
 set colorscheme jungle
 set colorscheme snow
+showhidden
+hidden
+set show_hidden
+set show_hidden false
+search config
+search ranger
+
+Delete
+mkdir Torrents
+delete
