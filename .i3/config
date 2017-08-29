@@ -2,6 +2,7 @@
 
 set $mod Mod4
 set $term termite
+set $flash --no-startup-id bash ~/Scripts/flash_win.sh
 
 # Name workspaces
 set $tag1 "1:  Web"
@@ -62,6 +63,9 @@ bindsym $mod+Return exec --no-startup-id $term
 bindsym $mod+Shift+q kill
 
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# Flash focused window
+bindsym $mod+BackSpace exec $flash
 
 # change focus
 bindsym $mod+$left focus left
