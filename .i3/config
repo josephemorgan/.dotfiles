@@ -248,4 +248,11 @@ exec --no-startup-id nm-applet
 
 
 ### - Expirimental - ###
-
+# Scratchpad terminal.
+# https://faq.i3wm.org/question/2420/dropdown-terminal-in-i3/
+# Using a custom title string with criteria is deliberate and keeps things simple.
+exec --no-startup-id terminator -l KJ -T "Life is beautiful."
+for_window [title="Life"] floating enable, move scratchpad, scratchpad show;
+for_window [title="Life"] resize grow left 300, resize grow right 300, resize grow down 150, resize grow up 100, move scratchpad;
+bindsym $mod+i  [instance="terminator" title="Life"] scratchpad show
+bindsym Print [instance="terminator" title="Life"] scratchpad show
