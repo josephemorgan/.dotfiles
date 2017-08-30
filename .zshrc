@@ -41,3 +41,5 @@ export term="xterm-256color"
 # if command -v tmux>/dev/null; then
 #   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
 # fi
+
+stty -ixon

@@ -9,6 +9,7 @@ set $tag1 "1:  Web"
 set $tag2 "2:  Dev"
 set $tag3 "3:  Media"
 set $tag4 "4: Android Studio"
+set $tag5 "5: &#xf0f6;Word Processor"
 set $tag0 "10: Social"
 
 # Define Colors
@@ -56,8 +57,14 @@ exec --no-startup-id feh --bg-scale /home/joe/Pictures/Wallpapers/flat-deer.jpg
 
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec --no-startup-id $term
+# start a terminal with tmux
+bindsym $mod+Return exec --no-startup-id $term -e tmux
+
+#start a terminal
+bindsym $mod+Shift+Return exec --no-startup-id $term
+
+# Open a ranger terminal
+bindsym $mod+g exec --no-startup-id $term -e ranger
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -123,7 +130,7 @@ bindsym $mod+1 workspace $tag1
 bindsym $mod+2 workspace $tag2
 bindsym $mod+3 workspace $tag3
 bindsym $mod+4 workspace $tag4
-bindsym $mod+5 workspace 5
+bindsym $mod+5 workspace $tag5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8

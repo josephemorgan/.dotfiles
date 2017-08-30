@@ -16,3 +16,5 @@ Delete
 mkdir Torrents
 delete
 
+w
+shell tmux
