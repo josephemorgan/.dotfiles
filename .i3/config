@@ -49,8 +49,7 @@ client.unfocused  $transparent $black     $lightgray
 client.urgent     $transparent $darkred   $lightgray
 client.background $transparent
 
-exec --no-startup-id feh --bg-scale /home/joe/Pictures/Wallpapers/flat-deer.jpg
-
+exec --no-startup-id feh --bg-scale /home/joe/.i3/wallpaper.jpg
 
 
 ### - Control Bindings - ###
