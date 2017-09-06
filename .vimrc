@@ -234,4 +234,3 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 8, 4)<CR>
 """ vim move config 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:move_key_modifier = 'C'
