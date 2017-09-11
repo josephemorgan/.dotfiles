@@ -43,3 +43,5 @@ export term="xterm-256color"
 # fi
 
 stty -ixon
+
+xset r rate 200 45
