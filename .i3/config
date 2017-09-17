@@ -66,6 +66,12 @@ bindsym $mod+Shift+Return exec --no-startup-id $term
 # Open a ranger terminal
 bindsym $mod+g exec --no-startup-id $term -e ranger
 
+# Open cmus in a terminal window
+bindsym $mod+m exec --no-startup-id $term -e cmus
+
+bindsym $mod+Shift+m exec --no-starupt-id $term -e cava
+
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
