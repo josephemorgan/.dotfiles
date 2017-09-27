@@ -17,7 +17,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Vundle Plugin Manager
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " Shows useful information via bars above and below buffer
 Plugin 'vim-airline/vim-airline'
@@ -201,6 +201,9 @@ let g:ycm_global_ycm_extra_conf = '~/dev/cpp/.ycm_extra_conf.py'
 set completeopt-=preview
 " The ycmd server SHUT DOWN (restart with ':YcmRestartServer'). YCM core library compiled for Python 2 but loaded in Python 3. Set the 'g:ycm_server_python_interpreter'
 let g:ycm_server_python_interpreter = "/usr/bin/python2"
+
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
 
 
 
