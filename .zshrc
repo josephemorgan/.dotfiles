@@ -28,6 +28,7 @@ alias keyswapper="~/Scripts/keyswapper"
 alias sheader="~/Scripts/student_header.sh"
 alias ctags="ctags -R -f ./.git/tags ."
 alias tmux="tmux -u"
+alias R="R --quiet"
 
 # Uses xclip application to pipe output to clipboard.
 # Usage - $ cat /path/to/a/file | xclip
