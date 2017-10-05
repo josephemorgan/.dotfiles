@@ -17,7 +17,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Vundle Plugin Manager
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " Shows useful information via bars above and below buffer
 Plugin 'vim-airline/vim-airline'
@@ -56,6 +56,9 @@ Plugin 'matze/vim-move'
 
 " Automatically close brackets
 Plugin 'jiangmiao/auto-pairs'
+
+" Vim with Latex
+Plugin 'lervag/vimtex'
 
 " Some colorschemes - ymmv
 Plugin 'nanotech/jellybeans.vim'
@@ -234,6 +237,7 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 8, 4)<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" vim move config 
+""" vimtex config 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:vimtex_view_general_viewer = '/usr/bin/zathura'
