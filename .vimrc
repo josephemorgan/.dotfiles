@@ -205,6 +205,9 @@ set completeopt-=preview
 " The ycmd server SHUT DOWN (restart with ':YcmRestartServer'). YCM core library compiled for Python 2 but loaded in Python 3. Set the 'g:ycm_server_python_interpreter'
 let g:ycm_server_python_interpreter = "/usr/bin/python2"
 
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
