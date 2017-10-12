@@ -63,6 +63,12 @@ bindsym $mod+Return exec --no-startup-id $term -e tmux
 #start a terminal
 bindsym $mod+Shift+Return exec --no-startup-id $term
 
+# Open floating terminal
+bindsym $mod+i  [instance="terminator" title="Life"] scratchpad show
+
+# Relaunch floating terminal if you goof and close it
+bindsym $mod+shift+i exec --no-startup-id terminator -l KJ -T "Life is beautiful."
+
 # Open a ranger terminal
 bindsym $mod+g exec --no-startup-id $term -e ranger
 
@@ -70,7 +76,6 @@ bindsym $mod+g exec --no-startup-id $term -e ranger
 bindsym $mod+m exec --no-startup-id $term -e cmus
 
 bindsym $mod+Shift+m exec --no-starupt-id $term -e cava
-
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -260,5 +265,4 @@ exec --no-startup-id nm-applet
 exec --no-startup-id terminator -l KJ -T "Life is beautiful."
 for_window [title="Life"] floating enable, move scratchpad, scratchpad show;
 for_window [title="Life"] resize grow left 300, resize grow right 300, resize grow down 150, resize grow up 100, move scratchpad;
-bindsym $mod+i  [instance="terminator" title="Life"] scratchpad show
 bindsym Print [instance="terminator" title="Life"] scratchpad show
