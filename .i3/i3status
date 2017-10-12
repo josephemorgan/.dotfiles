@@ -28,7 +28,7 @@ path_exists VPN {
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
+        format = "%a %e %B, %Y %l:%M %P"
 }
 
 cpu_temperature 0 {
