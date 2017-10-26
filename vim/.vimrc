@@ -55,7 +55,7 @@ Plugin 'terryma/vim-smooth-scroll'
 Plugin 'matze/vim-move'
 
 " Automatically close brackets
-Plugin 'jiangmiao/auto-pairs'
+" Plugin 'jiangmiao/auto-pairs'
 
 " Vim with Latex
 Plugin 'lervag/vimtex'
