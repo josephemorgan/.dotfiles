@@ -121,6 +121,10 @@ nmap <F9> :TagbarTogglePause<CR>
 set foldmethod=syntax
 set foldlevel=0
 set foldnestmax=1
+" Workaround to prevent vim from unfolding everything
+" after entering an opening brace
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 
 
 
@@ -201,6 +205,7 @@ nmap <leader>e :Errors<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:ycm_global_ycm_extra_conf = '~/dev/cpp/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
 set completeopt-=preview
 " The ycmd server SHUT DOWN (restart with ':YcmRestartServer'). YCM core library compiled for Python 2 but loaded in Python 3. Set the 'g:ycm_server_python_interpreter'
 let g:ycm_server_python_interpreter = "/usr/bin/python2"
