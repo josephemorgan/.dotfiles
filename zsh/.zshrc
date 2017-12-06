@@ -29,6 +29,7 @@ alias sheader="~/Scripts/student_header.sh"
 alias ctags="ctags -R -f ./.git/tags ."
 alias tmux="tmux -u"
 alias R="R --quiet"
+alias update-grub="sudo zsh ~/Scripts/update-grub"
 
 # Uses xclip application to pipe output to clipboard.
 # Usage - $ cat /path/to/a/file | xclip

@@ -88,7 +88,7 @@ set termencoding=utf-8
 set ruler
 set autoindent
 set smartindent
-set cinoptions=g0
+set cinoptions=g0:0
 set tabstop=2        " tab width is 2 spaces
 set shiftwidth=2     " indent also with 2 spaces
 set textwidth=0
@@ -204,7 +204,7 @@ nmap <leader>e :Errors<CR>
 """ YouCompleteMe config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:ycm_global_ycm_extra_conf = '~/dev/cpp/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/dev/cpp/.ycm_config'
 let g:ycm_confirm_extra_conf = 0
 set completeopt-=preview
 " The ycmd server SHUT DOWN (restart with ':YcmRestartServer'). YCM core library compiled for Python 2 but loaded in Python 3. Set the 'g:ycm_server_python_interpreter'

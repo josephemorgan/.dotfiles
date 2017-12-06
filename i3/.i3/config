@@ -55,6 +55,9 @@ exec --no-startup-id feh --bg-scale /home/joe/.i3/wallpaper.jpg
 
 ### - Control Bindings - ###
 
+bindsym $mod+u exec --no-startup-id redshift -O 3400 -b .8
+bindsym $mod+Shift+u exec --no-startup-id redshift -O 6500 -b 1
+
 floating_modifier $mod
 
 # start a terminal with tmux
@@ -130,11 +133,13 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
+# Will NOT show floating terminal window
+
+bindsym $mod+Shift+minus [instance="^(?!terminator).*$"] scratchpad show, floating disable
 
 # switch to workspace
 bindsym $mod+1 workspace $tag1
