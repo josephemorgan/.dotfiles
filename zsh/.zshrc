@@ -31,6 +31,11 @@ alias tmux="tmux -u"
 alias R="R --quiet"
 alias update-grub="sudo zsh ~/Scripts/update-grub"
 
+set_wallpaper() {
+	ln -s -f $PWD/$1 /home/joe/.i3/wallpaper.jpg
+	feh --bg-scale $PWD/$1
+}
+
 # Uses xclip application to pipe output to clipboard.
 # Usage - $ cat /path/to/a/file | xclip
 # Works on any utility that produces output

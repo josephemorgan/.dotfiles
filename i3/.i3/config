@@ -113,7 +113,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+n split h
+bindsym $mod+Shift+v split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -211,7 +211,7 @@ bindsym $mod+r mode "resize"
 mode "System" {
 	bindsym e exec i3-msg exit, mode "default"
 	bindsym s exec i3exit suspend, mode "default"
-	bindsym h exec i3exit hibernate, mode "default"
+	bindsym h exec systemctl hibernate, mode "default"
 	bindsym r exec systemctl reboot, mode "default"
 	bindsym Shift+s exec systemctl poweroff, mode "default"
 
