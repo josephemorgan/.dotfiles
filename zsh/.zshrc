@@ -32,6 +32,7 @@ alias R="R --quiet"
 alias update-grub="sudo zsh ~/Scripts/update-grub"
 
 set_wallpaper() {
+	echo "Setting wallpaper: $PWD/$1\n"
 	ln -s -f $PWD/$1 /home/joe/.i3/wallpaper.jpg
 	feh --bg-scale $PWD/$1
 }
