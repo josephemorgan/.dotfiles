@@ -50,7 +50,8 @@ client.unfocused  $transparent $black     $lightgray
 client.urgent     $transparent $darkred   $lightgray
 client.background $transparent
 
-exec --no-startup-id feh --bg-scale /home/joe/.i3/wallpaper.jpg
+##exec --no-startup-id xrandr --output DP-4 --rotate right
+exec --no-startup-id feh --bg-scale --no-xinerama /home/joe/.i3/wallpaper.jpg
 
 
 ### - Control Bindings - ###
