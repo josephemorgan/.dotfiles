@@ -118,7 +118,7 @@ nnoremap <F5> = :YcmForceCompileAndDiagnostics<CR>
 nnoremap <F7> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 nmap <F9> :TagbarTogglePause<CR>
-map <F10> :YcmCompleter FixIt<CR>
+map <leader>f :YcmCompleter FixIt<CR>
 set foldmethod=syntax
 set foldlevel=0
 set foldnestmax=1

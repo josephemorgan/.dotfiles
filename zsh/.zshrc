@@ -30,6 +30,7 @@ alias ctags="ctags -R -f ./.git/tags ."
 alias tmux="tmux -u"
 alias R="R --quiet"
 alias update-grub="sudo zsh ~/Scripts/update-grub"
+alias vimconfig="vim ~/.vimrc"
 
 set_wallpaper() {
 	ln -s -f $PWD/$1 /home/joe/.i3/wallpaper.jpg
