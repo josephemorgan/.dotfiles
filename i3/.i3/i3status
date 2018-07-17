@@ -5,6 +5,7 @@ general {
 }
 
 order += "volume master"
+order += "cpu_temperature 0"
 order += "disk /"
 order += "tztime local"
 
@@ -46,4 +47,10 @@ volume master {
         device = "default"
         mixer = "Master"
         mixer_idx = 0
+}
+
+cpu_temperature 0 {
+	format = "T: %degrees C"
+	path = "/sys/class/hwmon/hwmon0/temp1_input"
+	max_threshold = 95
 }
