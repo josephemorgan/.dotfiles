@@ -34,7 +34,7 @@ alias vimconfig="vim ~/.vimrc"
 
 set_wallpaper() {
 	echo "Setting wallpaper: $PWD/$1\n"
-	ln -s -f $PWD/$1 /home/joe/.wallpaper.jpg
+	ln -s -f -v $PWD/$1 /home/joe/.wallpaper.jpg
 	feh --bg-scale --no-xinerama $PWD/$1
 }
 
