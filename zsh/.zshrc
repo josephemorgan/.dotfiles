@@ -16,6 +16,7 @@ export LC_CTYPE="en_US.UTF-8"
 export ANDROID_HOME="/home/joe/Android/Sdk/"
 
 # User Specified Aliases
+alias rename=perl-rename
 alias zconfig="vim ~/.zshrc"
 alias zsource="source ~/.zshrc"
 alias ls="ls --color=auto"

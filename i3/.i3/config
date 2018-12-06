@@ -1,17 +1,41 @@
-### - Environmental Variables - ###
+### - Envirunmental Variables - ###
 
 set $mod Mod4
 set $term termite
 set $flash --no-startup-id bash ~/Scripts/flash_win.sh
+set $main DP-4
+set $aux DP-2
 
 # Name workspaces
-set $tag1 "1:  Web"
-set $tag2 "2:  Dev"
-set $tag3 "3:  Media"
-set $tag4 "4: Android Studio"
-set $tag5 "5: &#xf0f6;Word Processor"
-set $tag6 "6: &#xf2db;Logisim"
-set $tag0 "10: &#xf1d0;Piracy"
+set $tag1 "1:  Dev"
+set $tag2 "2: &#xf0f6;Word Processor"
+set $tag3 "3: Android Studio"
+set $tag4 "4: &#xf2db;Logisim"
+set $tag0 "&#xf069; Misc."
+set $atag1 "1:  Web"
+set $atag2 "2:  Media"
+set $atag3 "3: &#xf1d0;Piracy"
+
+# Assign Monitors
+workspace $tag1 output $main
+workspace $tag2 output $main
+workspace $tag3 output $main
+workspace $tag4 output $main
+workspace $tag0 output $main
+workspace $atag1 output $aux
+workspace $atag2 output $aux
+workspace $atag3 output $aux
+
+# switch to workspace
+bindsym $mod+1 workspace $tag1
+bindsym $mod+2 workspace $tag2
+bindsym $mod+3 workspace $tag3
+bindsym $mod+4 workspace $tag4
+bindsym $mod+0 workspace $tag0
+bindsym Mod1+$mod+1 workspace $atag1
+bindsym Mod1+$mod+2 workspace $atag2
+bindsym Mod1+$mod+3 workspace $atag3
+
 
 # Define Colors
 set $black        #282828
@@ -50,9 +74,7 @@ client.unfocused  $transparent $black     $lightgray
 client.urgent     $transparent $darkred   $lightgray
 client.background $transparent
 
-##exec --no-startup-id xrandr --output DP-4 --rotate right
-exec --no-startup-id feh --bg-scale --no-xinerama /home/joe/.i3/wallpaper.jpg
-
+exec --no-startup-id /home/joe/Scripts/configure_display
 
 ### - Control Bindings - ###
 
@@ -142,18 +164,6 @@ bindsym $mod+minus move scratchpad
 
 bindsym $mod+Shift+minus [instance="^(?!terminator).*$"] scratchpad show, floating disable
 
-# switch to workspace
-bindsym $mod+1 workspace $tag1
-bindsym $mod+2 workspace $tag2
-bindsym $mod+3 workspace $tag3
-bindsym $mod+4 workspace $tag4
-bindsym $mod+5 workspace $tag5
-bindsym $mod+6 workspace $tag6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace $tag0
-
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $tag1
 bindsym $mod+Shift+2 move container to workspace $tag2
@@ -211,7 +221,7 @@ bindsym $mod+r mode "resize"
 
 mode "System" {
 	bindsym e exec i3-msg exit, mode "default"
-	bindsym s exec i3exit suspend, mode "default"
+	bindsym s exec systemctl suspend, mode "default"
 	bindsym h exec systemctl hibernate, mode "default"
 	bindsym r exec systemctl reboot, mode "default"
 	bindsym Shift+s exec systemctl poweroff, mode "default"
