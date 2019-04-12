@@ -23,9 +23,6 @@ alias zsource="source ~/.zshrc"
 alias ls="ls --color=auto"
 alias la="ls -a --color=auto"
 alias ll="ls -la --color=auto"
-alias gitignore="cp ~/.dotfiles/.gitignore ./.gitignore"
-alias readme="cp ~/.dotfiles/.README_TEMPLATE ./README"
-alias gogit="readme & gitignore & git init"
 alias keyswapper="~/Scripts/keyswapper"
 alias sheader="~/Scripts/student_header.sh"
 alias ctags="ctags -R -f ./.git/tags ."
@@ -33,6 +30,12 @@ alias tmux="tmux -u"
 alias R="R --quiet"
 alias update-grub="sudo zsh ~/Scripts/update-grub"
 alias vimconfig="vim ~/.vimrc"
+
+# Setup folder for dev
+alias cconfig="cp ~/Scripts/ycm_c_config ./.ycm_extra_config.py"
+alias gitignore="cp ~/.dotfiles/.gitignore ./.gitignore"
+alias readme="cp ~/.dotfiles/.README_TEMPLATE ./README"
+alias gogit="readme & gitignore & git init"
 
 set_wallpaper() {
 	echo "Setting wallpaper: $PWD/$1\n"
