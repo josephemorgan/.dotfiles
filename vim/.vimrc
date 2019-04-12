@@ -40,7 +40,7 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'christoomey/vim-tmux-navigator'
 
 " Insanely good tab code completion
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 
 " Advaned syntax highlighting
 Plugin 'octol/vim-cpp-enhanced-highlight'
