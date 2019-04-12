@@ -2,7 +2,7 @@
 export ZSH=/home/joe/.oh-my-zsh
 
 # Set OMZ theme
-ZSH_THEME=robbyrussell
+ZSH_THEME=spaceship
 
 # Couple OMZ settings
 COMPLETION_WAITING_DOTS="true"
@@ -16,6 +16,7 @@ export LC_CTYPE="en_US.UTF-8"
 export ANDROID_HOME="/home/joe/Android/Sdk/"
 
 # User Specified Aliases
+alias ekeymap="vim /home/joe/qmk_firmware/keyboards/ergodox_ez/keymaps/josephemorgan91"
 alias rename=perl-rename
 alias zconfig="vim ~/.zshrc"
 alias zsource="source ~/.zshrc"
@@ -31,11 +32,13 @@ alias ctags="ctags -R -f ./.git/tags ."
 alias tmux="tmux -u"
 alias R="R --quiet"
 alias update-grub="sudo zsh ~/Scripts/update-grub"
+alias vimconfig="vim ~/.vimrc"
 
 set_wallpaper() {
 	echo "Setting wallpaper: $PWD/$1\n"
-	ln -s -f $PWD/$1 /home/joe/.wallpaper.jpg
-	feh --bg-scale --no-xinerama $PWD/$1
+	ln -s -f -v $PWD/$1 /home/joe/.wallpaper.jpg
+	ln -s -f -v $PWD/$2 /home/joe/.wallpaper-lh.jpg
+	feh --bg-scale $PWD/$2 --bg-scale $PWD/$1
 }
 
 # Uses xclip application to pipe output to clipboard.

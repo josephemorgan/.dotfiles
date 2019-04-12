@@ -213,6 +213,8 @@ let g:ycm_server_python_interpreter = "/usr/bin/python2"
 
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
+let g:ycm_use_clangd = "Always"
+let g:ycm_clangd_binary_path = "/usr/bin/clangd"
 
 
 

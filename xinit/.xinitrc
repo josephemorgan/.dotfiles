@@ -8,8 +8,6 @@ syndaemon -i 1 -t -K -R -d &
 xset  r rate 200 60
 
 # Preferred Desktop Environment
-# exec cinnamon-session
-exec i3
+$HOME/Scripts/make_local_i3_config
 
-# Swap esc and capslock for X-Session
-/home/joe/Scripts/keyswapper
+exec i3
