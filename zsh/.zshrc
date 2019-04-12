@@ -3,6 +3,21 @@ export ZSH=/home/joe/.oh-my-zsh
 
 # Set OMZ theme
 ZSH_THEME=spaceship
+SPACESHIP_CHAR_SUFFIX=' '
+SPACESHIP_HOST_SHOW=always
+SPACESHIP_USER_SHOW=always
+SPACESHIP_PROMPT_ORDER=(
+user          # Username section
+host          # Hostname section
+dir           # Current directory section
+git           # Git section (git_branch + git_status)
+exec_time     # Execution time
+battery       # Battery level and status
+vi_mode       # Vi-mode indicator
+jobs          # Background jobs indicator
+exit_code     # Exit code section
+char          # Prompt character
+)
 
 # Couple OMZ settings
 COMPLETION_WAITING_DOTS="true"
@@ -32,17 +47,17 @@ alias update-grub="sudo zsh ~/Scripts/update-grub"
 alias vimconfig="vim ~/.vimrc"
 
 # Setup folder for dev
-alias cconfig="cp ~/Scripts/ycm_c_config ./.ycm_extra_config.py"
-alias gitignore="cp ~/.dotfiles/.gitignore ./.gitignore"
-alias readme="cp ~/.dotfiles/.README_TEMPLATE ./README"
-alias gogit="readme & gitignore & git init"
+	alias cconfig="cp ~/Scripts/ycm_c_config ./.ycm_extra_config.py"
+	alias gitignore="cp ~/.dotfiles/.gitignore ./.gitignore"
+	alias readme="cp ~/.dotfiles/.README_TEMPLATE ./README"
+	alias gogit="readme & gitignore & git init"
 
-set_wallpaper() {
-	echo "Setting wallpaper: $PWD/$1\n"
-	ln -s -f -v $PWD/$1 /home/joe/.wallpaper.jpg
-	ln -s -f -v $PWD/$2 /home/joe/.wallpaper-lh.jpg
-	feh --bg-scale $PWD/$2 --bg-scale $PWD/$1
-}
+	set_wallpaper() {
+		echo "Setting wallpaper: $PWD/$1\n"
+		ln -s -f -v $PWD/$1 /home/joe/.wallpaper.jpg
+		ln -s -f -v $PWD/$2 /home/joe/.wallpaper-lh.jpg
+		feh --bg-scale $PWD/$2 --bg-scale $PWD/$1
+	}
 
 # Uses xclip application to pipe output to clipboard.
 # Usage - $ cat /path/to/a/file | xclip
@@ -54,9 +69,9 @@ export EDITOR='vim'
 export term="xterm-256color"
 
 # if command -v tmux>/dev/null; then
-#   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
-# fi
+	#   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+	# fi
 
-stty -ixon
+	stty -ixon
 
-xset r rate 200 45
+	xset r rate 200 45
