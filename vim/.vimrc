@@ -69,12 +69,23 @@ call vundle#end()
 filetype plugin indent on
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ General .vimrc config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let mapleader = "\<Space>"
+
+func! WordProcessor()
+	map j gj
+	map k gk
+	setlocal formatoptions=1
+	setlocal noexpandtab
+	setlocal wrap
+	setlocal linebreak
+	setlocal spell spelllang=en_us
+	set complete+=s
+endfu
+com! WP call WordProcessor()
 
 set comments=sl:/*,mb:\ *,elx:\ */
 set formatoptions-=cro
@@ -109,9 +120,11 @@ nnoremap <c-l> <c-w>l
 map <c-P> :CtrlPBufTag<CR>
 
 map <leader>t <C-W>}
-map <leader>p <C-W>z
 
 nmap <leader>w :wa<CR>
+nmap <leader>Q :wqa<CR>
+nmap <leader>Q :wqa<CR>
+nmap <leader>p :WP<CR>
 
 map <F4> :!ctags -R<CR><CR>
 nnoremap <F5> = :YcmForceCompileAndDiagnostics<CR>
