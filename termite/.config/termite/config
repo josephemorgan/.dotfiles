@@ -1,5 +1,5 @@
 [options]
-font = Inconsolata 12
+font = Inconsolata 11
 #font = Source Code Pro 11
 resize_grip = false
 scroll_on_keystroke = true
@@ -20,7 +20,7 @@ foreground = #c5c8c6
 foreground_bold = #ffffff
 #foreground_dim = #888888
 #background = #ededed
-background       =rgba(0, 0, 0, 0.8)
+background       =rgba(75, 75, 75, 0.8)
 #cursor = #aeafad
 
 # if unset, will reverse foreground and background

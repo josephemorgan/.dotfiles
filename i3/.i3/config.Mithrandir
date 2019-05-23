@@ -24,3 +24,4 @@ bindsym $mod+2 workspace $tag2
 bindsym $mod+3 workspace $tag3
 bindsym $mod+4 workspace $tag4
 
+feh --no-startup-id --bg-scale /home/joe/Pictures/wallpaper.jpg
