@@ -100,8 +100,8 @@ set ruler
 set autoindent
 set smartindent
 set cinoptions=g0:0
-set tabstop=2        " tab width is 2 spaces
-set shiftwidth=2     " indent also with 2 spaces
+set tabstop=4        " tab width is 2 spaces
+set shiftwidth=4     " indent also with 2 spaces
 set textwidth=0
 set t_Co=256
 set number
