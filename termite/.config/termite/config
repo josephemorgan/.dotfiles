@@ -19,8 +19,8 @@ cursor_shape = ibeam
 foreground = #c5c8c6
 foreground_bold = #ffffff
 #foreground_dim = #888888
-#background = #ededed
-background       =rgba(0, 0, 0, 0.8)
+#background = #2d2d2d
+background       =rgba(47, 52, 63, .6)
 #cursor = #aeafad
 
 # if unset, will reverse foreground and background
