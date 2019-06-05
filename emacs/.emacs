@@ -45,7 +45,7 @@ There are two things you can do about this warning:
  '(org-startup-indented nil)
  '(package-selected-packages
    (quote
-    (smart-tabs-mode doom-themes doom-modeline ivy company zenburn-theme))))
+	(all-the-icons evil smart-tabs-mode doom-themes doom-modeline ivy company zenburn-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
