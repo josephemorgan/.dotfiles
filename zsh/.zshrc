@@ -45,6 +45,7 @@ alias tmux="tmux -u"
 alias R="R --quiet"
 alias update-grub="sudo zsh ~/Scripts/update-grub"
 alias vimconfig="vim ~/.vimrc"
+alias emacs="emacs -nw"
 
 # Setup folder for dev
 	alias cconfig="cp ~/Scripts/ycm_c_config ./.ycm_extra_config.py"
