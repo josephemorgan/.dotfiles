@@ -1,10 +1,12 @@
+###### CONFIG.ILUVITAR ######
+
 ### - Envirunmental Variables - ###
 
 set $mod Mod4
 set $term termite
 set $flash --no-startup-id bash ~/Scripts/flash_win.sh
-set $main DP-4
-set $aux DP-2
+set $main DP-2
+set $aux HDMI-0
 
 # Name workspaces
 set $tag1 "1:  Dev"
@@ -37,4 +39,6 @@ bindsym Mod1+$mod+2 workspace $atag2
 bindsym Mod1+$mod+3 workspace $atag3
 
 exec --no-startup-id /home/joe/Scripts/configure_display
-exec --no-startup-id feh --bg-scale home/joe/.wallpaper-lh.jpg /home/joe/.wallpaper.jpg
+exec --no-startup-id feh --bg-scale /home/joe/.wallpaper-lh.jpg /home/joe/.wallpaper.jpg
+
+###### END CONFIG.ILUVITAR ######
