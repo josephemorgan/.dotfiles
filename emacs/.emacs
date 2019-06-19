@@ -1,13 +1,14 @@
 (package-initialize)
 ;;;; Theme and Visual Settings
 
-(load-theme 'zenburn t)
+(load-theme 'jbeans t)
 (tool-bar-mode 0)
 (scroll-bar-mode -1)
 (setq inhibit-startup-message t)
 (setq inhibit-scratch-message "")
 (setq line-number-mode t)
 (setq column-number-mode t)
+(setq vc-follow-symlinks t)
 
 
 ;; General Settings
@@ -45,7 +46,7 @@ There are two things you can do about this warning:
  '(org-startup-indented nil)
  '(package-selected-packages
    (quote
-	(all-the-icons evil smart-tabs-mode doom-themes doom-modeline ivy company zenburn-theme))))
+	(nlinum-relative jbeans-theme all-the-icons evil smart-tabs-mode doom-themes doom-modeline ivy company zenburn-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -65,3 +66,9 @@ There are two things you can do about this warning:
 (ido-mode t)
 (require 'all-the-icons)
 (smart-tabs-insinuate 'c 'java)
+(require 'nlinum-relative)
+(nlinum-relative-setup-evil)
+(add-hook 'prog-mode-hook 'nlinum-relative-mode)
+(setq nlinum-relative-redisplay-delay 0)
+(setq nlinum-relative-current-symbol "->")
+(setq nlinum-relative-offset 0)
