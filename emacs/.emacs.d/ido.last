@@ -1,0 +1,51 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/joe/" . "knowledge_base/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/joe/org/"
+ "/home/joe/.emacs.d/"
+ "/home/joe/knowledge_base/"
+ "/home/joe/package-mgr/"
+ "/home/joe/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "notes.org"
+ "USERSUPPORT.org"
+ "package-init.el"
+ "init.el"
+ "account_creation.org"
+ "Knowledge_Base.html"
+ "Knowledge_Base.org"
+ "homepage.html"
+ "package-mgr.cpp"
+ "Package.cpp"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/joe/.emacs.d/" (23819 62814 137637 67000) "init.el" "emacs-color-theme-solarized-master/" "auto-save-list/" "evil/" ".#package-init.el" "network-security.data" "ido.last" "init.el~" "package-init.el" "./" "elpa/" "../")
+
+ ("/home/joe/org/" (23819 61647 747676 0) "notes.org" "USERSUPPORT.org" "./" "../")
+
+ ("/home/" (23751 32436 416666 660000) "joe/" "./" "../")
+
+ ("/home/joe/.emacs.d/elpa/" (23819 56352 865991 538000) "all-the-icons-20190320.1809/" "use-package-20190529.2040/" "archives/" "ace-window-readme.txt" "undo-tree-0.6.5.signed" "company-0.9.10/" "ac-html-angular-readme.txt" "jbeans-theme-20180309.1625/" "doom-modeline-20190523.847/" "memoize-20180614.1930/" "f-20190109.906/" "ivy-20190523.921/" "gnupg/" "nlinum-1.9/" "goto-chg-20190110.2114/" "zenburn-theme-20190510.934/" "undo-tree-0.6.5/" "ac-helm-readme.txt" "company-0.9.10.signed" "./" "doom-themes-20190521.419/" "nlinum-1.9.signed" "evil-20190222.1212/" "bind-key-20180513.430/" "dash-20190424.1804/" "company-readme.txt" "smart-tabs-mode-20160629.1452/" "shrink-path-20170813.247/" "nlinum-relative-20160526.708/" "s-20180406.808/" "../")
+
+ ("/home/joe/.emacs.d/elpa/evil-20190222.1212/" (23819 56359 572676 316000) "evil-types.el" "fdl-1.3.info" "evil-ex.elc" "evil-states.elc" "dir" "evil-common.el" "version.info" "evil-jumps.elc" "evil-search.elc" "evil-digraphs.el" "evil-maps.elc" "evil-repeat.el" "evil-command-window.el" "evil-keybindings.elc" "evil-maps.el" "evil-search.el" "evil-vars.elc" "evil-integration.elc" "evil-jumps.el" "evil-macros.elc" "evil-core.el" "evil-autoloads.el" "evil-repeat.elc" "evil-types.elc" "evil-ex.el" "evil-commands.elc" "evil-pkg.el" "evil-vars.el" "evil-states.el" "./" "evil-core.elc" "evil-development.elc" "evil-command-window.elc" "evil.elc" "macros.info" "evil-macros.el" "evil-common.elc" "evil-integration.el" "evil-development.el" "evil-commands.el" "evil-digraphs.elc" "evil.el" "evil-keybindings.el" "evil.info" "../")
+
+ ("/home/joe/" (23819 53662 78026 205000) ".gitconfig" "package-mgr/" ".wget-hsts" "knowledge_base/" ".dotfiles/" ".pki/" ".local/" ".Xauthority" ".zshrc.pre-oh-my-zsh" "qmk/" ".zcompdump-Mithrandir-5.7.1" "Bookmarks" ".viminfo" ".cache/" ".zshrc" ".config/" ".vimrc" ".zcompdump-iluvitar-5.7.1" ".i3/" ".zprofile" "monty_hall/" ".lesshst" "org/" ".zsh_history" "./" "Pictures/" ".emacs.d/" ".saves/" ".bash_history" ".vim/" ".ispell_english" ".oh-my-zsh/" "Downloads/" "Scripts/" ".tmux.conf" ".fehbg" "../")
+
+ ("/home/joe/knowledge_base/" (23818 41391 842632 623000) "account_creation.odt" "adobe-acrobat.org" "Knowledge_Base.html" "Knowledge_Base.org" "account_creation.org" "account_creation.html" "./" "homepage.html" "adobe-acrobat.html" "account_creation.tex" "account_creation.pdf" "../")
+
+ ("/home/joe/package-mgr/" (23802 58945 341195 319000) "Package.cpp" "list_file.txt" "easy-mode" "package-mgr.cpp" "Debugger.hpp" "Pkg_list.hpp" "Pkg_list.o" "Package.hpp" "./" "package-mgr.o" "makefile" "Debugger.cpp" "Pkg_list.cpp" "../")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
