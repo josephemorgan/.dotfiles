@@ -29,14 +29,14 @@ workspace $atag2 output $aux
 workspace $atag3 output $aux
 
 # switch to workspace
-bindsym $mod+1 workspace $tag1
-bindsym $mod+2 workspace $tag2
-bindsym $mod+3 workspace $tag3
-bindsym $mod+4 workspace $tag4
+bindsym $mod+6 workspace $tag1
+bindsym $mod+7 workspace $tag2
+bindsym $mod+8 workspace $tag3
+bindsym $mod+9 workspace $tag4
 bindsym $mod+0 workspace $tag0
-bindsym Mod1+$mod+1 workspace $atag1
-bindsym Mod1+$mod+2 workspace $atag2
-bindsym Mod1+$mod+3 workspace $atag3
+bindsym $mod+1 workspace $atag1
+bindsym $mod+2 workspace $atag2
+bindsym $mod+3 workspace $atag3
 
 exec --no-startup-id /home/joe/Scripts/configure_display
 exec --no-startup-id feh --bg-scale /home/joe/.wallpaper.jpg /home/joe/.wallpaper-lh.jpg
