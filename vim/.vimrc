@@ -87,6 +87,7 @@ func! WordProcessor()
 endfu
 com! WP call WordProcessor()
 
+set relativenumber
 set comments=sl:/*,mb:\ *,elx:\ */
 set formatoptions-=cro
 set backspace=2

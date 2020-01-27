@@ -38,7 +38,15 @@ bindsym $mod+1 workspace $atag1
 bindsym $mod+2 workspace $atag2
 bindsym $mod+3 workspace $atag3
 
-exec --no-startup-id /home/joe/Scripts/configure_display
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $atag1
+bindsym $mod+Shift+2 move container to workspace $atag2
+bindsym $mod+Shift+3 move container to workspace $atag3
+bindsym $mod+Shift+6 move container to workspace $tag1
+bindsym $mod+Shift+7 move container to workspace $tag2
+bindsym $mod+Shift+8 move container to workspace $tag3
+
+exec --no-startup-id xrandr --output DP-2 --mode 2560x1440 --primary --output HDMI-0 --mode 1920x1200 --rotate left --left-of DP-2
 exec --no-startup-id feh --bg-scale /home/joe/.wallpaper.jpg /home/joe/.wallpaper-lh.jpg
 
 ###### END CONFIG.ILUVITAR ######

@@ -1,3 +1,7 @@
+;;; init.el --- Initialization file for Emacs
+;;; Commentary: Emacs Startup File --- initialization for Emacs
+;;; Code
+
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -42,3 +46,15 @@
   (("C-x C-b" . ibuffer)))
 
 (use-package helm :ensure t)
+
+(use-package elpy
+  :ensure t
+  :defer t
+  :init
+  (elpy-enable))
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+(use-package blacken :ensure t)
