@@ -1,5 +1,5 @@
 # OMZ home directory
-export ZSH=/home/joe/.oh-my-zsh
+export ZSH=/home/pi/.oh-my-zsh
 
 # Set OMZ theme
 ZSH_THEME=spaceship
@@ -28,10 +28,10 @@ source $ZSH/oh-my-zsh.sh
 
 # Fixes some undesirable behavior in Termite with OMZ
 export LC_CTYPE="en_US.UTF-8"
-export ANDROID_HOME="/home/joe/Android/Sdk/"
+export ANDROID_HOME="/home/pi/Android/Sdk/"
 
 # User Specified Aliases
-alias ekeymap="vim /home/joe/qmk_firmware/keyboards/ergodox_ez/keymaps/josephemorgan91"
+alias ekeymap="vim /home/pi/qmk_firmware/keyboards/ergodox_ez/keymaps/josephemorgan91"
 alias rename=perl-rename
 alias zconfig="vim ~/.zshrc"
 alias zsource="source ~/.zshrc"
@@ -41,7 +41,7 @@ alias ll="ls -la --color=auto"
 alias keyswapper="~/Scripts/keyswapper"
 alias sheader="~/Scripts/student_header.sh"
 alias ctags="ctags -R -f ./.git/tags ."
-alias tmux="tmux -u"
+# alias tmux="tmux -u"
 alias R="R --quiet"
 alias update-grub="sudo zsh ~/Scripts/update-grub"
 alias vimconfig="vim ~/.vimrc"
@@ -69,10 +69,3 @@ export EDITOR='vim'
 
 export term="xterm-256color"
 
-# if command -v tmux>/dev/null; then
-	#   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
-	# fi
-
-	stty -ixon
-
-	xset r rate 200 45
