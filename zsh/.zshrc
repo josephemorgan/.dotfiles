@@ -31,13 +31,10 @@ export LC_CTYPE="en_US.UTF-8"
 export ANDROID_HOME="/home/pi/Android/Sdk/"
 
 # User Specified Aliases
-<<<<<<< HEAD
 alias invert="/home/joe/Scripts/invert_qute.sh"
 alias revert="/home/joe/Scripts/revert_qute.sh"
 alias ekeymap="vim /home/joe/qmk_firmware/keyboards/ergodox_ez/keymaps/josephemorgan91"
-=======
 alias ekeymap="vim /home/pi/qmk_firmware/keyboards/ergodox_ez/keymaps/josephemorgan91"
->>>>>>> 6463692d44f3ea22a280f4e96139ebcb6cbaef54
 alias rename=perl-rename
 alias zconfig="vim ~/.zshrc"
 alias zsource="source ~/.zshrc"
