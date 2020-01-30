@@ -11,6 +11,7 @@
 (setq column-number-mode t)
 (setq vc-follow-symlinks t)
 (setq helm-buffers-fuzzy-matching t)
+(setq evil-want-C-i-jump nil)
 
 
 ;; General Settings
@@ -28,6 +29,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files
+   (quote
+	("/home/pi/org/sems20.org" "/home/pi/org/inbox.org")))
  '(package-selected-packages
    (quote
 	(blacken flychecK flycheck elpy helm zenburn-theme use-package smart-tabs-mode nlinum-relative jbeans-theme ivy evil doom-themes doom-modeline company))))

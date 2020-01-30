@@ -18,11 +18,15 @@
 (use-package org
   :config
   (setq org-agenda-files (quote ("~/org/"))
-		org-export-with-section-numbers nil
 		org-startup-indented 1
 		org-default-notes-file (concat org-directory "/inbox.org")
-		org-refile-targets '((org-agenda-files :maxlevel . 3)))
-  (define-key global-map "\C-cc" 'org-capture))
+		org-refile-targets '((org-agenda-files :maxlevel . 3))
+		org-agenda-include-diary t
+		)
+  (define-key global-map "\C-cc" 'org-capture)
+  (global-set-key (kbd "C-c l") 'org-store-link)
+  (global-set-key (kbd "C-c a") 'org-agenda)
+  (global-set-key (kbd "C-c c") 'org-capture))
 
 (use-package evil
   :ensure t
@@ -58,3 +62,7 @@
   :init (global-flycheck-mode))
 
 (use-package blacken :ensure t)
+
+(use-package calfw
+  :ensure t
+  )
