@@ -13,6 +13,8 @@
 ;;; MAGIT
 (use-package magit
   :ensure t
+  :config
+  (global-set-key (kbd "C-x g") 'magit-status)
   )
 
 ;;; DIMINISH
@@ -63,8 +65,7 @@
 ;;; IBUFFER
 (use-package ibuffer
   :ensure t
-  :bind
-  (("C-x C-b" . ibuffer)))
+  :bind (("C-x C-b" . ibuffer)))
 
 ;;; COUNSEL
 (use-package counsel
