@@ -1,5 +1,5 @@
 # OMZ home directory
-export ZSH=/home/joe/.oh-my-zsh
+export ZSH=/home/$USER/.oh-my-zsh
 
 # Set OMZ theme
 ZSH_THEME=spaceship
@@ -28,12 +28,12 @@ source $ZSH/oh-my-zsh.sh
 
 # Fixes some undesirable behavior in Termite with OMZ
 export LC_CTYPE="en_US.UTF-8"
-export ANDROID_HOME="/home/joe/Android/Sdk/"
+export ANDROID_HOME="/home/$USER/Android/Sdk/"
 
 # User Specified Aliases
-alias invert="/home/joe/Scripts/invert_qute.sh"
-alias revert="/home/joe/Scripts/revert_qute.sh"
-alias ekeymap="vim /home/joe/qmk_firmware/keyboards/ergodox_ez/keymaps/josephemorgan91"
+alias invert="/home/$USER/Scripts/invert_qute.sh"
+alias revert="/home/$USER/Scripts/revert_qute.sh"
+alias ekeymap="vim /home/$USER/qmk_firmware/keyboards/ergodox_ez/keymaps/josephemorgan91"
 alias rename=perl-rename
 alias zconfig="vim ~/.zshrc"
 alias zsource="source ~/.zshrc"
