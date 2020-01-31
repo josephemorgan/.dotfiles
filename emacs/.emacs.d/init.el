@@ -10,13 +10,11 @@
 (setq line-number-mode t)
 (setq column-number-mode t)
 (setq vc-follow-symlinks t)
-(setq helm-buffers-fuzzy-matching t)
 (setq evil-want-C-i-jump nil)
 
 
 ;; General Settings
 (setq backup-directory-alist `(("." . "~/.saves"))
-	  show-paren-delay 1
 	  show-paren-mode 1)
 (setq-default c-basic-offset 4
 			  tab-width 4
@@ -29,12 +27,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files
-   (quote
-	("/home/pi/org/sems20.org" "/home/pi/org/inbox.org")))
+ '(org-agenda-files nil)
  '(package-selected-packages
    (quote
-	(blacken flychecK flycheck elpy helm zenburn-theme use-package smart-tabs-mode nlinum-relative jbeans-theme ivy evil doom-themes doom-modeline company))))
+	(magit swiper ivy-rich counsel diminish blacken flychecK flycheck elpy helm zenburn-theme use-package smart-tabs-mode nlinum-relative jbeans-theme ivy evil doom-themes doom-modeline company))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
