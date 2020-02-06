@@ -7,16 +7,16 @@ SPACESHIP_CHAR_SUFFIX=' '
 SPACESHIP_HOST_SHOW=always
 SPACESHIP_USER_SHOW=always
 SPACESHIP_PROMPT_ORDER=(
-user          # Username section
-host          # Hostname section
-dir           # Current directory section
-git           # Git section (git_branch + git_status)
-exec_time     # Execution time
-battery       # Battery level and status
-vi_mode       # Vi-mode indicator
-jobs          # Background jobs indicator
-exit_code     # Exit code section
-char          # Prompt character
+	user          # Username section
+	host          # Hostname section
+	dir           # Current directory section
+	git           # Git section (git_branch + git_status)
+	exec_time     # Execution time
+	battery       # Battery level and status
+	vi_mode       # Vi-mode indicator
+	jobs          # Background jobs indicator
+	exit_code     # Exit code section
+	char          # Prompt character
 )
 
 # Couple OMZ settings
@@ -50,17 +50,17 @@ alias vimconfig="vim ~/.vimrc"
 alias emacs="emacs -nw"
 
 # Setup folder for dev
-	alias cconfig="cp ~/Scripts/ycm_c_config ./.ycm_extra_config.py"
-	alias gitignore="cp ~/.dotfiles/.gitignore ./.gitignore"
-	alias readme="cp ~/.dotfiles/.README_TEMPLATE ./README"
-	alias gogit="readme & gitignore & git init"
+alias cconfig="cp ~/Scripts/ycm_c_config ./.ycm_extra_config.py"
+alias gitignore="cp ~/.dotfiles/.gitignore ./.gitignore"
+alias readme="cp ~/.dotfiles/.README_TEMPLATE ./README"
+alias gogit="readme & gitignore & git init"
 
-	set_wallpaper() {
-		echo "Setting wallpaper: $PWD/$1\n"
-		ln -s -f -v $PWD/$1 /home/joe/.wallpaper.jpg
-		ln -s -f -v $PWD/$2 /home/joe/.wallpaper-lh.jpg
-		feh --bg-scale $PWD/$2 --bg-scale $PWD/$1
-	}
+set_wallpaper() {
+	echo "Setting wallpaper: $PWD/$1\n"
+	ln -s -f -v $PWD/$1 /home/joe/.wallpaper.jpg
+	ln -s -f -v $PWD/$2 /home/joe/.wallpaper-lh.jpg
+	feh --bg-scale $PWD/$2 --bg-scale $PWD/$1
+}
 
 # Uses xclip application to pipe output to clipboard.
 # Usage - $ cat /path/to/a/file | xclip
@@ -71,3 +71,9 @@ export EDITOR='vim'
 
 export term="xterm-256color"
 
+if [[ "${HOST}" == "jupiter" ]]; then
+	sh /home/joe/.dotfiles/zsh/.zshrc_jupiter
+fi
+if [[ "${HOST}" == "Illuvitar" ]]; then
+	sh /home/joe/.dotfiles/zsh/.zshrc_illuvitar
+fi
