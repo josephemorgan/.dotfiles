@@ -12,15 +12,10 @@ set $tag2 "2:  Dev"
 set $tag3 "3: &#xf0f6;Word Processor"
 set $tag4 "4: Android Studio"
 
-# Assign Monitors
-workspace $tag1 output $main
-workspace $tag2 output $main
-workspace $tag3 output $main
-workspace $tag4 output $main
-
 # switch to workspace
 bindsym $mod+1 workspace $tag1
 bindsym $mod+2 workspace $tag2
 bindsym $mod+3 workspace $tag3
 bindsym $mod+4 workspace $tag4
 
+exec --no-startup-id feh --bg-scale /home/joe/Pictures/Wallpapers/Space-Galaxy.jpg
