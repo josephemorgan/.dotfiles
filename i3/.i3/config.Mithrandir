@@ -18,4 +18,8 @@ bindsym $mod+2 workspace $tag2
 bindsym $mod+3 workspace $tag3
 bindsym $mod+4 workspace $tag4
 
+<<<<<<< HEAD
 exec --no-startup-id feh --bg-scale /home/joe/Pictures/Wallpapers/Space-Galaxy.jpg
+=======
+feh --no-startup-id --bg-scale /home/joe/Pictures/wallpaper.jpg
+>>>>>>> 5a4f09dbb421ecb4bc9f5b0f318cb849ea20e29c

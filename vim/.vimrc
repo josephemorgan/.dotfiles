@@ -69,13 +69,25 @@ call vundle#end()
 filetype plugin indent on
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ General .vimrc config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let mapleader = "\<Space>"
 
+func! WordProcessor()
+	map j gj
+	map k gk
+	setlocal formatoptions=1
+	setlocal noexpandtab
+	setlocal wrap
+	setlocal linebreak
+	setlocal spell spelllang=en_us
+	set complete+=s
+endfu
+com! WP call WordProcessor()
+
+set relativenumber
 set comments=sl:/*,mb:\ *,elx:\ */
 set formatoptions-=cro
 set backspace=2
@@ -89,8 +101,8 @@ set ruler
 set autoindent
 set smartindent
 set cinoptions=g0:0
-set tabstop=2        " tab width is 2 spaces
-set shiftwidth=2     " indent also with 2 spaces
+set tabstop=4        " tab width is 2 spaces
+set shiftwidth=4     " indent also with 2 spaces
 set textwidth=0
 set t_Co=256
 set number
@@ -109,9 +121,11 @@ nnoremap <c-l> <c-w>l
 map <c-P> :CtrlPBufTag<CR>
 
 map <leader>t <C-W>}
-map <leader>p <C-W>z
 
 nmap <leader>w :wa<CR>
+nmap <leader>Q :wqa<CR>
+nmap <leader>Q :wqa<CR>
+nmap <leader>p :WP<CR>
 
 map <F4> :!ctags -R<CR><CR>
 nnoremap <F5> = :YcmForceCompileAndDiagnostics<CR>
@@ -205,7 +219,7 @@ nmap <leader>e :Errors<CR>
 """ YouCompleteMe config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:ycm_global_ycm_extra_conf = '~/dev/cpp/.ycm_config'
+let g:ycm_global_ycm_extra_conf = '~/.dotfiles/utils/ycm_config.py'
 let g:ycm_confirm_extra_conf = 0
 set completeopt-=preview
 " The ycmd server SHUT DOWN (restart with ':YcmRestartServer'). YCM core library compiled for Python 2 but loaded in Python 3. Set the 'g:ycm_server_python_interpreter'

@@ -20,7 +20,7 @@ foreground = #c5c8c6
 foreground_bold = #ffffff
 #foreground_dim = #888888
 #background = #ededed
-background       =rgba(0, 0, 0, 0.8)
+background       =rgba(15, 15, 15, 0.8)
 #cursor = #aeafad
 
 # if unset, will reverse foreground and background

@@ -1,10 +1,12 @@
+###### CONFIG.ILUVITAR ######
+
 ### - Envirunmental Variables - ###
 
 set $mod Mod4
 set $term termite
 set $flash --no-startup-id bash ~/Scripts/flash_win.sh
-set $main DP-4
-set $aux DP-2
+set $main DP-2
+set $aux HDMI-0
 
 # Name workspaces
 set $tag1 "1:  Dev"
@@ -27,14 +29,25 @@ workspace $atag2 output $aux
 workspace $atag3 output $aux
 
 # switch to workspace
-bindsym $mod+1 workspace $tag1
-bindsym $mod+2 workspace $tag2
-bindsym $mod+3 workspace $tag3
-bindsym $mod+4 workspace $tag4
+bindsym $mod+6 workspace $tag1
+bindsym $mod+7 workspace $tag2
+bindsym $mod+8 workspace $tag3
+bindsym $mod+9 workspace $tag4
 bindsym $mod+0 workspace $tag0
-bindsym Mod1+$mod+1 workspace $atag1
-bindsym Mod1+$mod+2 workspace $atag2
-bindsym Mod1+$mod+3 workspace $atag3
+bindsym $mod+1 workspace $atag1
+bindsym $mod+2 workspace $atag2
+bindsym $mod+3 workspace $atag3
 
-exec --no-startup-id /home/joe/Scripts/configure_display
-exec --no-startup-id feh --bg-scale home/joe/.wallpaper-lh.jpg /home/joe/.wallpaper.jpg
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $atag1
+bindsym $mod+Shift+2 move container to workspace $atag2
+bindsym $mod+Shift+3 move container to workspace $atag3
+bindsym $mod+Shift+6 move container to workspace $tag1
+bindsym $mod+Shift+7 move container to workspace $tag2
+bindsym $mod+Shift+8 move container to workspace $tag3
+
+exec --no-startup-id xrandr --output DP-2 --mode 2560x1440 --primary --output HDMI-0 --mode 1920x1200 --rotate left --left-of DP-2
+exec --no-startup-id feh --bg-scale /home/joe/.wallpaper.jpg /home/joe/.wallpaper-lh.jpg
+exec --no-startup-id dunst
+
+###### END CONFIG.ILUVITAR ######
