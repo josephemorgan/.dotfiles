@@ -9,7 +9,6 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-
 ;;; MAGIT
 (use-package magit
   :ensure t

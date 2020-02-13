@@ -1,7 +1,7 @@
 (package-initialize)
 ;;;; Theme and Visual Settings
 
-;(load-theme 'jbeans t)
+(load-theme 'jbeans t)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
@@ -27,6 +27,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+	("7f9dc0c7bc8e5b4a1b9904359ee449cac91fd89dde6aca7a45e4ed2e4985664c" default)))
  '(org-agenda-files nil)
  '(package-selected-packages
    (quote
