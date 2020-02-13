@@ -1,0 +1,20 @@
+mkdir CISP440
+mkdir software_float
+rm -r
+shell rm -r
+shell rm -r ./chris
+rename CISP440S
+shell
+mkdir sorting
+mkdir encryption
+qa!
+merge_sort
+mkdir merge_sort
+mkdir sm
+mkdir PHYS350
+mkdir Textbook
+vim *.tsv
+
+mkdir CISP310
+Q
+delete
