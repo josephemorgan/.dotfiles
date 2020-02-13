@@ -9,7 +9,6 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-
 ;;; MAGIT
 (use-package magit
   :ensure t
@@ -40,6 +39,7 @@
   (global-set-key (kbd "C-c l") 'org-store-link)
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
+  (add-hook 'org-mode-hook 'turn-on-flyspell)
   )
 
 ;;; EVIL
