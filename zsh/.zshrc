@@ -74,6 +74,6 @@ export term="xterm-256color"
 if [[ "${HOST}" == "jupiter" ]]; then
 	sh /home/joe/.dotfiles/zsh/.zshrc_jupiter
 fi
-if [[ "${HOST}" == "Iluvitar" ]]; then
-	sh /home/joe/.dotfiles/zsh/.zshrc_iluvitar
+if [[ "${HOST}" == "Illuvitar" ]]; then
+	sh /home/joe/.dotfiles/zsh/.zshrc_illuvitar
 fi
