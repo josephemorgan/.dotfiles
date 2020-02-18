@@ -9,6 +9,24 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+;;; DUMB-JUMP
+(use-package dumb-jump
+  :ensure t
+  :config
+  (dumb-jump-mode)
+  )
+;;; JBEANS
+(use-package jbeans-theme
+  :ensure t
+  )
+
+;;; WHICH-KEY
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode)
+  )
+
 ;;; MAGIT
 (use-package magit
   :ensure t
