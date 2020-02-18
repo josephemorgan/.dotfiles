@@ -113,10 +113,10 @@ highlight Normal ctermbg=none
 highlight LineNr ctermbg=none
 highlight VertSplit ctermbg=none
 
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
+nnoremap <C-A-j> <c-w>j
+nnoremap <C-A-k> <c-w>k
+nnoremap <c-<Left>> <c-w>h
+nnoremap <c-<Right>> <c-w>l
 
 map <c-P> :CtrlPBufTag<CR>
 
