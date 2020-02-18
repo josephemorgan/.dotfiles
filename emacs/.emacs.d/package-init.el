@@ -9,6 +9,13 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+;;; JBEANS
+(use-package jbeans-theme
+  :ensure t
+  :config
+  (load-theme 'jbeans t)
+  )
+
 ;;; MAGIT
 (use-package magit
   :ensure t
