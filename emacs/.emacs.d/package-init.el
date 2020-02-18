@@ -15,16 +15,18 @@
   :config
   (dumb-jump-mode)
   )
-;;; JBEANS
-(use-package jbeans-theme
-  :ensure t
-  )
 
 ;;; WHICH-KEY
 (use-package which-key
   :ensure t
   :config
   (which-key-mode)
+
+;;; JBEANS
+(use-package jbeans-theme
+  :ensure t
+  :config
+  (load-theme 'jbeans t)
   )
 
 ;;; MAGIT
