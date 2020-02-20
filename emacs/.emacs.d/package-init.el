@@ -69,8 +69,8 @@
 (use-package org
   :ensure t
   :config
-  (setq org-agenda-files (quote ("~/org/"))
-		org-startup-indented 1
+  (setq org-agenda-files '("~/org/"))
+  (setq org-startup-indented 1
 		org-default-notes-file (concat org-directory "/inbox.org")
 		org-refile-targets '(
 							 (nil :maxlevel . 9)
