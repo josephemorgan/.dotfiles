@@ -9,6 +9,16 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+;;; yasnippet
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-global-mode 1)
+  (use-package yasnippet-snippets
+	:ensure t
+	)
+  )
+
 ;;; DUMB-JUMP
 (use-package dumb-jump
   :ensure t
@@ -16,11 +26,25 @@
   (dumb-jump-mode)
   )
 
+;;; company
+(use-package company
+  :ensure t
+  :defer t
+  :init
+  (global-company-mode)
+  :config
+  (progn
+    ;; Use Company for completion
+    (bind-key [remap completion-at-point] #'company-complete company-mode-map))
+  (setq company-idle-delay 0.1)
+  )
+
 ;;; WHICH-KEY
 (use-package which-key
   :ensure t
   :config
   (which-key-mode)
+  )
 
 ;;; JBEANS
 (use-package jbeans-theme
