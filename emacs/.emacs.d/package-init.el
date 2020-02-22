@@ -76,7 +76,7 @@
 							 (nil :maxlevel . 9)
 							 (org-agenda-files :maxlevel . 9)
 							 )
-		org-agenda-window-setup 'current-window
+		org-agenda-window-setup 'other-window
 		org-agenda-restore-windows-after-quit t
 		)
   (define-key global-map "\C-cc" 'org-capture)
