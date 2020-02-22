@@ -56,6 +56,7 @@ alias cconfig="cp ~/Scripts/ycm_c_config ./.ycm_extra_config.py"
 alias gitignore="cp ~/.dotfiles/.gitignore ./.gitignore"
 alias readme="cp ~/.dotfiles/.README_TEMPLATE ./README"
 alias gogit="readme & gitignore & git init"
+alias vpnstart="sudo openconnect --protocol=gp vpn.csus.edu"
 
 set_wallpaper() {
 	echo "Setting wallpaper: $PWD/$1\n"
