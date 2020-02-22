@@ -21,7 +21,7 @@ SPACESHIP_PROMPT_ORDER=(
 
 # Couple OMZ settings
 COMPLETION_WAITING_DOTS="true"
-plugins=(git sudo wd tmux zsh-completions vi-mode)
+plugins=(git sudo wd tmux zsh-completions)
 autoload -U compinit && compinit
 export KEYTIMEOUT=1
 
