@@ -21,7 +21,9 @@ SPACESHIP_PROMPT_ORDER=(
 
 # Couple OMZ settings
 COMPLETION_WAITING_DOTS="true"
-plugins=(git sudo wd tmux)
+plugins=(git sudo wd tmux zsh-completions)
+autoload -U compinit && compinit
+export KEYTIMEOUT=1
 
 # Source OMZ file, needs to be *before* other aliases
 source $ZSH/oh-my-zsh.sh
@@ -36,7 +38,7 @@ alias revert="/home/$USER/Scripts/revert_qute.sh"
 alias ekeymap="vim /home/$USER/qmk_firmware/keyboards/ergodox_ez/keymaps/josephemorgan91"
 alias rename=perl-rename
 alias zconfig="vim ~/.zshrc"
-alias zsource="source ~/.zshrc"
+alias zsource="source $ZDOTDIR/.zshrc"
 alias ls="ls --color=auto"
 alias la="ls -a --color=auto"
 alias ll="ls -la --color=auto"
@@ -54,6 +56,7 @@ alias cconfig="cp ~/Scripts/ycm_c_config ./.ycm_extra_config.py"
 alias gitignore="cp ~/.dotfiles/.gitignore ./.gitignore"
 alias readme="cp ~/.dotfiles/.README_TEMPLATE ./README"
 alias gogit="readme & gitignore & git init"
+alias vpnstart="sudo openconnect --protocol=gp vpn.csus.edu"
 
 set_wallpaper() {
 	echo "Setting wallpaper: $PWD/$1\n"
@@ -85,3 +88,5 @@ fi
 if [[ "${HOST}" == "Illuvitar" ]]; then
 	sh /home/joe/.dotfiles/zsh/.zshrc_illuvitar
 fi
+source /home/joe/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/joe/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

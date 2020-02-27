@@ -9,11 +9,34 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+;;; yasnippet
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-global-mode 1)
+  (use-package yasnippet-snippets
+	:ensure t
+	)
+  )
+
 ;;; DUMB-JUMP
 (use-package dumb-jump
   :ensure t
   :config
   (dumb-jump-mode)
+  )
+
+;;; company
+(use-package company
+  :ensure t
+  :defer t
+  :init
+  (global-company-mode)
+  :config
+  (progn
+    ;; Use Company for completion
+    (bind-key [remap completion-at-point] #'company-complete company-mode-map))
+  (setq company-idle-delay 0.1)
   )
 
 ;;; WHICH-KEY
@@ -53,7 +76,7 @@
 							 (nil :maxlevel . 9)
 							 (org-agenda-files :maxlevel . 9)
 							 )
-		org-agenda-window-setup 'current-window
+		org-agenda-window-setup 'other-window
 		org-agenda-restore-windows-after-quit t
 		)
   (define-key global-map "\C-cc" 'org-capture)
@@ -61,7 +84,8 @@
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
   (add-hook 'org-mode-hook 'turn-on-flyspell)
-  (add-hook 'org-mode-hook 'auto-fill-mode)
+  (add-hook 'org-mode-hook 'visual-line-mode)
+  (add-hook 'org-mode-hook 'company-mode nil)
   )
 
 ;;; EVIL
