@@ -90,7 +90,7 @@
   (global-set-key (kbd "C-c c") 'org-capture)
   (add-hook 'org-mode-hook 'turn-on-flyspell)
   (add-hook 'org-mode-hook 'visual-line-mode)
-  (add-hook 'org-mode-hook 'company-mode)
+  (add-hook 'org-mode-hook 'company-mode nil)
   )
 
 ;;; EVIL
