@@ -30,13 +30,12 @@
 (use-package company
   :ensure t
   :defer t
-  :init
-  (global-company-mode)
   :config
   (progn
     ;; Use Company for completion
     (bind-key [remap completion-at-point] #'company-complete company-mode-map))
-  (setq company-idle-delay 0.1)
+  (setq company-idle-delay 0.05)
+  (add-hook 'prog-mode-hook 'company-mode-on)
   )
 
 ;;; WHICH-KEY
@@ -84,8 +83,6 @@
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
   (add-hook 'org-mode-hook 'turn-on-flyspell)
-  (add-hook 'org-mode-hook 'visual-line-mode)
-  (add-hook 'org-mode-hook 'company-mode nil)
   )
 
 ;;; EVIL

@@ -1,4 +1,4 @@
-###### CONFIG.ILUVITAR ######
+##### CONFIG.ILUVITAR ######
 
 ### - Envirunmental Variables - ###
 
@@ -9,14 +9,14 @@ set $main DP-2
 set $aux HDMI-0
 
 # Name workspaces
-set $tag1 "1:  Dev"
-set $tag2 "2: &#xf0f6;Word Processor"
-set $tag3 "3: Android Studio"
-set $tag4 "4: &#xf2db;Logisim"
-set $tag0 "&#xf069; Misc."
-set $atag1 "1:  Web"
-set $atag2 "2:  Media"
-set $atag3 "3: &#xf1d0;Piracy"
+set $tag1 "1: Home"
+set $tag2 "2: Dev"
+set $tag3 "3: Server"
+set $tag4 "4: Email"
+set $tag0 "5: Org"
+set $atag1 " Web"
+set $atag2 " Discord"
+set $atag3 " Background"
 
 # Assign Monitors
 workspace $tag1 output $main
@@ -27,6 +27,17 @@ workspace $tag0 output $main
 workspace $atag1 output $aux
 workspace $atag2 output $aux
 workspace $atag3 output $aux
+
+# Assign Workspaces
+assign [class="^qutebrowser$"] $atag1
+assign [class="^discord$"] $atag2
+
+# Autostart applications
+exec --no-startup-id /usr/bin/discord
+exec --no-startup-id /usr/bin/qutebrowser
+exec --no-startup-id i3-msg "workspace 5: Org"
+exec --no-startup-id i3-msg "exec emacsclient -c ~/org/sems20.org"
+exec --no-startup-id i3-msg "workspace 1: Home"
 
 # switch to workspace
 bindsym $mod+6 workspace $tag1
@@ -45,6 +56,8 @@ bindsym $mod+Shift+3 move container to workspace $atag3
 bindsym $mod+Shift+6 move container to workspace $tag1
 bindsym $mod+Shift+7 move container to workspace $tag2
 bindsym $mod+Shift+8 move container to workspace $tag3
+bindsym $mod+Shift+9 move container to workspace $tag4
+bindsym $mod+Shift+0 move container to workspace $tag0
 
 exec --no-startup-id xrandr --output DP-2 --mode 2560x1440 --primary --output HDMI-0 --mode 1920x1200 --rotate left --left-of DP-2
 exec --no-startup-id feh --bg-scale /home/joe/.wallpaper.jpg /home/joe/.wallpaper-lh.jpg
