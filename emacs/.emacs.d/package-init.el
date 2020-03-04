@@ -9,6 +9,11 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+;;; org-cliplink
+(use-package org-cliplink
+  :ensure t
+  )
+
 ;;; yasnippet
 (use-package yasnippet
   :ensure t
