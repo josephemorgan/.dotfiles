@@ -1,1 +1,2 @@
 #!/bin/zsh
+alias process_torrents="python3 /home/joe/Scripts/torrent_processor.py"
