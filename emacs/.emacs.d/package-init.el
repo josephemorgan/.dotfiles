@@ -9,12 +9,6 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(use-package evil-better-visual-line
-  :ensure t
-  :config
-  (evil-better-visual-line-on)
-  )
-
 ;;; yasnippet
 (use-package yasnippet
   :ensure t
@@ -40,7 +34,7 @@
   (progn
     ;; Use Company for completion
     (bind-key [remap completion-at-point] #'company-complete company-mode-map))
-  (setq company-idle-delay 0.1)
+  (setq company-idle-delay 0.05)
   (add-hook 'prog-mode-hook 'company-mode-on)
   )
 

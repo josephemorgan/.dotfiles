@@ -35,7 +35,9 @@ assign [class="^discord$"] $atag2
 # Autostart applications
 exec --no-startup-id /usr/bin/discord
 exec --no-startup-id /usr/bin/qutebrowser
-exec --no-startup-id i3-msg "workspace 5: Org; exec emacsclient -c ~/org/sems20.org; workspace 1: Home"
+exec --no-startup-id i3-msg "workspace 5: Org"
+exec --no-startup-id i3-msg "exec emacsclient -c ~/org/sems20.org"
+exec --no-startup-id i3-msg "workspace 1: Home"
 
 # switch to workspace
 bindsym $mod+6 workspace $tag1
