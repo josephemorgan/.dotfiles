@@ -90,5 +90,6 @@ fi
 if [[ "${HOST}" == "Illuvitar" ]]; then
 	sh /home/joe/.dotfiles/zsh/.zshrc_illuvitar
 fi
-source /home/joe/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/joe/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ "${HOST}" == "Mithrandir" ]]; then
+	sh /home/joe/.dotfiles/zsh/.zshrc_mithrandir
+fi
