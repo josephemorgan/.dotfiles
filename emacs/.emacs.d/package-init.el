@@ -9,10 +9,9 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(use-package evil-better-visual-line
+;;; org-cliplink
+(use-package org-cliplink
   :ensure t
-  :config
-  (evil-better-visual-line-on)
   )
 
 ;;; yasnippet
@@ -40,7 +39,7 @@
   (progn
     ;; Use Company for completion
     (bind-key [remap completion-at-point] #'company-complete company-mode-map))
-  (setq company-idle-delay 0.1)
+  (setq company-idle-delay 0.05)
   (add-hook 'prog-mode-hook 'company-mode-on)
   )
 
@@ -89,8 +88,6 @@
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
   (add-hook 'org-mode-hook 'turn-on-flyspell)
-  (add-hook 'org-mode-hook 'visual-line-mode)
-  (add-hook 'org-mode-hook 'company-mode nil)
   )
 
 ;;; EVIL

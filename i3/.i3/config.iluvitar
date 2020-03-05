@@ -14,9 +14,9 @@ set $tag2 "2: Dev"
 set $tag3 "3: Server"
 set $tag4 "4: Email"
 set $tag0 "5: Org"
-set $atag1 " Web"
-set $atag2 " Discord"
-set $atag3 " Background"
+set $atag1 "6: Web"
+set $atag2 "7: Discord"
+set $atag3 "8: Background"
 
 # Assign Monitors
 workspace $tag1 output $main
@@ -35,7 +35,9 @@ assign [class="^discord$"] $atag2
 # Autostart applications
 exec --no-startup-id /usr/bin/discord
 exec --no-startup-id /usr/bin/qutebrowser
-exec --no-startup-id i3-msg "workspace 5: Org; exec emacsclient -c ~/org/sems20.org; workspace 1: Home"
+exec --no-startup-id i3-msg "workspace 5: Org"
+exec --no-startup-id i3-msg "exec emacsclient -c ~/org/sems20.org"
+exec --no-startup-id i3-msg "workspace 1: Home"
 
 # switch to workspace
 bindsym $mod+6 workspace $tag1

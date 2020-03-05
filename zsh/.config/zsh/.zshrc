@@ -19,9 +19,19 @@ SPACESHIP_PROMPT_ORDER=(
 	char          # Prompt character
 )
 
+# Install zsh-completions if it isn't installed
+if [[ ! -d "$ZSH/custom/plugins/zsh-completions" ]] ; then
+	  git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+fi
+
+#Install zsh-syntax-highlighting if it isn't already
+if [[ ! -d "$ZSH/custom/plugins/zsh-syntax-highlighting" ]] ; then
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+fi
+
 # Couple OMZ settings
 COMPLETION_WAITING_DOTS="true"
-plugins=(git sudo wd tmux zsh-completions)
+plugins=(git sudo wd tmux zsh-completions zsh-syntax-highlighting)
 autoload -U compinit && compinit
 export KEYTIMEOUT=1
 
