@@ -12,3 +12,5 @@ unclutter &
 
 # Preferred Desktop Environment
 $HOME/Scripts/make_local_i3_config
+
+exec i3
