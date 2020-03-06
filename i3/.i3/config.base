@@ -6,9 +6,10 @@ set $whitesmoke   #f5f5f5
 set $skyblue      #3399ff
 set $green        #42b879
 set $darkred      #8b0000
-set $darkgray     #414141
+set $darkgray     #515151
 set $lightgray    #D3D3D3
 set $transparent  #000000E5
+set $highlight	  #e94141
 
 set $bg-color 	         #2f343f
 set $inactive-bg-color   #2f343f
@@ -24,17 +25,15 @@ set $right l
 
 
 ### - Appearance - ###
-
 font pango:System San Francisco Display 10
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 1
 gaps inner 12
 
-# Colors          Border       Background Text
-client.focused    $transparent $black     $darkwhite
-client.unfocused  $transparent $black     $lightgray
-client.urgent     $transparent $darkred   $lightgray
+#Color			  Border	   BG         text	       indicator	child_border	
+client.focused    $transparent $black     $darkwhite   $highlight	$highlight
+client.unfocused  $transparent $black     $lightgray   $darkblack	$darkblack
+client.urgent     $transparent $darkred   $lightgray   $darkred		$darkred
 client.background $transparent
-
 
 ### - Control Bindings - ###
 
@@ -195,12 +194,12 @@ bar {
 	position top
 	strip_workspace_numbers yes
 	colors {
-		background $bg-color
+		background $black
 		statusline #ffffff
 		separator #666666
-		focused_workspace $bg-color $bg-color $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-		urgent_workspace $urgent-bg-color $urgent-bg-color $text-color
+		focused_workspace $black $black $highlight
+		inactive_workspace $black $black $lightgray
+		urgent_workspace $black $black $darkred
 	}
 }
 
