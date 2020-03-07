@@ -26,7 +26,7 @@ set $right l
 
 ### - Appearance - ###
 font pango:System San Francisco Display 10
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 0
 gaps inner 12
 
 #Color			  Border	   BG         text	       indicator	child_border	
@@ -65,7 +65,6 @@ bindsym $mod+Shift+m exec --no-starupt-id $term -e cava
 # kill focused window
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # Flash focused window
 bindsym $mod+BackSpace exec $flash
@@ -173,11 +172,13 @@ mode "System" {
 bindsym $mod+Shift+e mode "System"
 
 mode "Launch" {
-	bindsym c exec --no-startup-id chromium, mode "default"
 	bindsym w exec --no-startup-id qutebrowser, mode "default"
 	bindsym r exec --no-startup-id "i3-sensible-terminal -e ranger", mode "default"
 	bindsym e exec --no-startup-id "emacsclient -c", mode "default"
 	bindsym o exec --no-startup-id "emacsclient -c ~/org/sems20.org", mode "default"
+	bindsym d exec rofi -show drun -matching fuzzy -terminal /usr/bin/termite, mode "default"
+	bindsym s exec rofi -show ssh -matching fuzzy -terminal /usr/bin/termitetermite, mode "default"
+	bindsym i exec rofi -show window -matching fuzzy -terminal /usr/bin/termite, mode "default"
 
 # back to normal: Enter or Escape
 	bindsym Return mode "default"
@@ -191,20 +192,20 @@ bindsym $mod+q mode "Launch"
 ### - i3bar Configuration - ###
 
 bar {
+	i3bar_command i3bar -t
 	status_command i3status -c ~/.i3/i3status
 	position top
 	strip_workspace_numbers yes
 	height 25
 	colors {
-		background $black
+		background $transparent
 		statusline #ffffff
 		separator #666666
-		focused_workspace $black $black $highlight
-		inactive_workspace $black $black $lightgray
-		urgent_workspace $black $black $darkred
+		focused_workspace $transparent $transparent $highlight
+		inactive_workspace $transparent $transparent $lightgray
+		urgent_workspace $transparent $transparent $darkred
 	}
 }
-
 
 
 ### - Startup - ###

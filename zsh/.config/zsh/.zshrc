@@ -80,7 +80,7 @@ alias xclip="xclip -selection c"
 
 export EDITOR='vim'
 
-if [[ -f ~/Scripts/make_local_i3_config ]] ; then
+if [[ -f /usr/bin/i3 ]] ; then
 	~/Scripts/make_local_i3_config
 fi
 
