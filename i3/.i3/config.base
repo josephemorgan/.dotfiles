@@ -8,7 +8,7 @@ set $green        #42b879
 set $darkred      #8b0000
 set $darkgray     #515151
 set $lightgray    #D3D3D3
-set $transparent  #000000E5
+set $transparent  #00000033
 set $highlight	  #e94141
 
 set $bg-color 	         #2f343f
@@ -194,6 +194,7 @@ bar {
 	status_command i3status -c ~/.i3/i3status
 	position top
 	strip_workspace_numbers yes
+	height 25
 	colors {
 		background $black
 		statusline #ffffff
