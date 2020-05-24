@@ -37,10 +37,24 @@
   :defer t
   :config
   (progn
-    ;; Use Company for completion
-    (bind-key [remap completion-at-point] #'company-complete company-mode-map))
-  (setq company-idle-delay 0.05)
-  (add-hook 'prog-mode-hook 'company-mode-on)
+	;; Use Company for completion
+	(bind-key [remap completion-at-point] #'company-complete company-mode-map))
+  (setq company-idle-delay 0.5)
+  :hook (prog-mode . company-mode)
+  )
+
+(use-package company-ycmd
+  :ensure t
+  :config
+  (company-ycmd-setup)
+  )
+
+(use-package ycmd
+  :ensure t
+  :init
+  (add-hook 'prog-mode-hook #'global-ycmd-mode)
+  (set-variable 'ycmd-server-command '("python" "/home/joe/make/ycmd/ycmd/"))
+										;(set-variable 'ycmd-global-config "/home/joe/.dotfiles/utils/ycm_config.py")
   )
 
 ;;; WHICH-KEY
@@ -50,11 +64,11 @@
   (which-key-mode)
   )
 
-;;; JBEANS
-(use-package jbeans-theme
+;;; vscdark-theme
+(use-package vscdark-theme
   :ensure t
   :config
-  (load-theme 'jbeans t)
+  (load-theme 'vscdark t)
   )
 
 ;;; MAGIT
@@ -73,7 +87,8 @@
 (use-package org
   :ensure t
   :config
-  (setq org-agenda-files '("~/org/"))
+  (setq org-agenda-files '("~/org"
+						   "~/org/teamProject"))
   (setq org-startup-indented 1
 		org-default-notes-file (concat org-directory "/inbox.org")
 		org-refile-targets '(
@@ -82,11 +97,18 @@
 							 )
 		org-agenda-window-setup 'other-window
 		org-agenda-restore-windows-after-quit t
+		org-export-with-section-numbers nil
 		)
   (define-key global-map "\C-cc" 'org-capture)
   (global-set-key (kbd "C-c l") 'org-store-link)
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((C . t)
+	 (java . t)
+	 (shell . t)
+	 ))
   (add-hook 'org-mode-hook 'turn-on-flyspell)
   (add-hook 'org-mode-hook 'visual-line-mode)
   )
@@ -101,32 +123,15 @@
 ;;; ALL THE ICONS
 (use-package all-the-icons :ensure t)
 
-;;; NLINUM-RELATIVE
-(use-package nlinum-relative
-  :ensure t
-  :config
-  (nlinum-relative-setup-evil)
-  (add-hook 'prog-mode-hook 'nlinum-relative-mode)
-  (setq nlinum-relative-redisplay-delay 0)
-  (setq nlinum-relative-current-symbol "->")
-  (setq nlinum-relative-offset 0))
-
 ;;; IBUFFER
 (use-package ibuffer
   :ensure t
   :bind (("C-x C-b" . ibuffer)))
 
-;;; COUNSEL
-(use-package counsel
-  :ensure t
-  :after ivy
-  :config (counsel-mode))
-
 ;; IVY
 (use-package ivy
   :ensure t
   :defer 0.1
-  :diminish
   :bind (("C-c C-r" . ivy-resume)
 		 ("C-x B" . ivy-switch-buffer-other-window))
   :custom
@@ -142,30 +147,69 @@
   (ivy-virtual-abbreviate 'full
 						  ivy-rich-switch-buffer-align-virtual-buffer t
 						  ivy-rich-path-style 'abbrev))
-
-;;; SWIPER
-(use-package swiper
+;;; projectile
+(use-package projectile
   :ensure t
   :after ivy
-  :bind (("C-s" . swiper)
-		 ("C-r" . swiper)))
+  :config
+  (define-key evil-normal-state-map (kbd "C-p") nil)
+  (global-set-key (kbd "C-p") 'projectile-command-map)
+  (projectile-mode +1)
+  (define-key projectile-command-map (kbd "f") 'counsel-projectile)
+  )
 
-;;; ELPY
-(use-package elpy
+;;; COUNSEL
+(use-package counsel
   :ensure t
-  :defer t
-  :init
-  (elpy-enable))
+  :after ivy
+  :config
+  (counsel-mode +1)
+  (counsel-projectile-mode +1)
+  )
 
-;;; FLYCHECK
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
-
-;;; BLACKEN
-(use-package blacken :ensure t)
-
-;;; CALFW
-(use-package calfw
+;;; emmet-mode
+										; Expands various key combinations into html/css code
+(use-package emmet-mode
   :ensure t
   )
+
+;;; web-mode
+(use-package web-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+  )
+
+;;; SWIPER
+  (use-package swiper
+	:ensure t
+	:after ivy
+	:bind (("C-s" . swiper)
+		   ("C-r" . swiper)))
+
+;;; ELPY
+  (use-package elpy
+	:ensure t
+	:defer t
+	:init
+	(elpy-enable))
+
+;;; FLYCHECK
+  (use-package flycheck
+	:ensure t
+	:init (global-flycheck-mode))
+
+;;; BLACKEN
+  (use-package blacken :ensure t)
+
+;;; CALFW
+  (use-package calfw
+	:ensure t
+	)

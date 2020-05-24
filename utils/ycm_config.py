@@ -4,7 +4,7 @@ def FlagsForFile(filename, **kwargs):
   flags = [
     '-Wall',
     '-Wextra',
-    '-Werror'
+    '-Werror',
     '-pedantic',
     '-I',
     '.',

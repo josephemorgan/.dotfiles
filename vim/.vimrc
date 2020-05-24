@@ -41,7 +41,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 
 " Insanely good tab code completion
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'rdnetto/YCM-Generator'
+" Plugin 'rdnetto/YCM-Generator'
 
 " Advaned syntax highlighting
 Plugin 'octol/vim-cpp-enhanced-highlight'
