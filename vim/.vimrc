@@ -26,6 +26,7 @@ Plugin 'vim-airline/vim-airline-themes'
 
 " File Manager within vim
 Plugin 'scrooloose/nerdtree'
+Plugin 'PhilRunninger/nerdtree-visual-selection'
 
 " Fuzzy file opener
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -73,6 +74,7 @@ Plugin 'jvanja/vim-bootstrap4-snippets'
 
 " Improved Javascript syntax highlighting and indentation
 Plugin 'pangloss/vim-javascript'
+Plugin 'briancollins/vim-jst'
 
 " Cool Icons
 Plugin 'ryanoasis/vim-devicons'
@@ -104,6 +106,8 @@ func! WordProcessor()
 endfu
 com! WP call WordProcessor()
 
+set incsearch
+set hlsearch
 set guifont=Iosevka\ Nerd\ Font\ 11
 set relativenumber
 set comments=sl:/*,mb:\ *,elx:\ */
@@ -127,6 +131,8 @@ set t_Co=256
 set number
 set showmatch
 set nospell
+
+
 highlight NonText ctermbg=none
 highlight Normal ctermbg=none
 highlight LineNr ctermbg=none
@@ -137,21 +143,19 @@ nnoremap <C-A-k> <c-w>k
 nnoremap <c-<Left>> <c-w>h
 nnoremap <c-<Right>> <c-w>l
 
-map <c-P> :CtrlPBufTag<CR>
-
 map <leader>t <C-W>}
-
 nmap <leader>w :wa<CR>
 nmap <leader>Q :wqa<CR>
 nmap <leader>Q :wqa<CR>
-nmap <leader>p :WP<CR>
+nmap <leader>p :CtrlPBufTag<CR>
+nmap <leader>/ :noh<CR>
+map <leader>f :YcmCompleter FixIt<CR>
 
 map <F4> :!ctags -R<CR><CR>
 nnoremap <F5> = :YcmForceCompileAndDiagnostics<CR>
 nnoremap <F7> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 nmap <F9> :TagbarTogglePause<CR>
-map <leader>f :YcmCompleter FixIt<CR>
 set foldmethod=syntax
 set foldlevel=1
 set foldnestmax=1
@@ -204,13 +208,6 @@ nmap <leader>bl :ls<CR>
 let g:airline_powerline_fonts = 1
 
 set laststatus=2
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" Tagbar Config
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 
 
@@ -279,4 +276,5 @@ let g:UltiSnipsJumpBackwardTrigger="<c-h>"
 """ ctrl-p config 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
