@@ -26,9 +26,10 @@ Plugin 'vim-airline/vim-airline-themes'
 
 " File Manager within vim
 Plugin 'scrooloose/nerdtree'
+Plugin 'PhilRunninger/nerdtree-visual-selection'
 
 " Fuzzy file opener
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " Opens window to show tags in a file
 Plugin 'majutsushi/tagbar'
@@ -40,7 +41,7 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'christoomey/vim-tmux-navigator'
 
 " Insanely good tab code completion
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
 " Plugin 'rdnetto/YCM-Generator'
 
 " Advaned syntax highlighting
@@ -56,10 +57,27 @@ Plugin 'terryma/vim-smooth-scroll'
 Plugin 'matze/vim-move'
 
 " Automatically close brackets
-" Plugin 'jiangmiao/auto-pairs'
+Plugin 'jiangmiao/auto-pairs'
 
 " Vim with Latex
 Plugin 'lervag/vimtex'
+
+" Abbreviation Expander
+Plugin 'mattn/emmet-vim'
+
+" Vim Snippets
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
+" Bootstrap Snippets
+Plugin 'jvanja/vim-bootstrap4-snippets'
+
+" Improved Javascript syntax highlighting and indentation
+Plugin 'pangloss/vim-javascript'
+Plugin 'briancollins/vim-jst'
+
+" Cool Icons
+Plugin 'ryanoasis/vim-devicons'
 
 " Some colorschemes - ymmv
 Plugin 'nanotech/jellybeans.vim'
@@ -88,9 +106,12 @@ func! WordProcessor()
 endfu
 com! WP call WordProcessor()
 
+set incsearch
+set hlsearch
+set guifont=Iosevka\ Nerd\ Font\ 11
 set relativenumber
 set comments=sl:/*,mb:\ *,elx:\ */
-set formatoptions-=cro
+au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set backspace=2
 syntax on
 set background=dark
@@ -98,6 +119,7 @@ colorscheme jellybeans
 set enc=utf-8
 set fenc=utf-8
 set termencoding=utf-8
+set encoding=utf8
 set ruler
 set autoindent
 set smartindent
@@ -109,6 +131,8 @@ set t_Co=256
 set number
 set showmatch
 set nospell
+
+
 highlight NonText ctermbg=none
 highlight Normal ctermbg=none
 highlight LineNr ctermbg=none
@@ -119,23 +143,21 @@ nnoremap <C-A-k> <c-w>k
 nnoremap <c-<Left>> <c-w>h
 nnoremap <c-<Right>> <c-w>l
 
-map <c-P> :CtrlPBufTag<CR>
-
 map <leader>t <C-W>}
-
 nmap <leader>w :wa<CR>
 nmap <leader>Q :wqa<CR>
 nmap <leader>Q :wqa<CR>
-nmap <leader>p :WP<CR>
+nmap <leader>p :CtrlPBufTag<CR>
+nmap <leader>/ :noh<CR>
+map <leader>f :YcmCompleter FixIt<CR>
 
 map <F4> :!ctags -R<CR><CR>
 nnoremap <F5> = :YcmForceCompileAndDiagnostics<CR>
 nnoremap <F7> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 nmap <F9> :TagbarTogglePause<CR>
-map <leader>f :YcmCompleter FixIt<CR>
 set foldmethod=syntax
-set foldlevel=0
+set foldlevel=1
 set foldnestmax=1
 " Workaround to prevent vim from unfolding everything
 " after entering an opening brace
@@ -190,41 +212,12 @@ set laststatus=2
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" Syntastic config
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_cpp_checkers = ['gcc']
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_auto_loc_list = 0
-
-nmap <leader>e :Errors<CR>
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" Tagbar Config
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ YouCompleteMe config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:ycm_global_ycm_extra_conf = '~/.dotfiles/utils/ycm_config.py'
 let g:ycm_confirm_extra_conf = 0
 set completeopt-=preview
-" The ycmd server SHUT DOWN (restart with ':YcmRestartServer'). YCM core library compiled for Python 2 but loaded in Python 3. Set the 'g:ycm_server_python_interpreter'
-let g:ycm_server_python_interpreter = "/usr/bin/python2"
 
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
@@ -262,8 +255,26 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 8, 4)<CR>
 
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ vimtex config 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 let g:vimtex_view_general_viewer = '/usr/bin/zathura'
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" snippets config 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-l>"
+let g:UltiSnipsJumpBackwardTrigger="<c-h>"
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" ctrl-p config 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlPMixed'
