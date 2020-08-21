@@ -57,6 +57,7 @@ alias ctags="ctags -R -f ./.git/tags ."
 alias R="R --quiet"
 alias update-grub="sudo zsh ~/Scripts/update-grub"
 alias vimconfig="vim ~/.vimrc"
+alias vim="nvim"
 
 # Setup folder for dev
 alias cconfig="cp ~/Scripts/ycm_c_config ./.ycm_extra_config.py"

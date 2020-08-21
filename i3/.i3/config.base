@@ -78,6 +78,8 @@ bindsym $mod+Shift+s exec --no-startup-id scrot -s ~/dev/60/tax_calc_ext/screens
 # Flash focused window
 bindsym $mod+BackSpace exec $flash
 
+bindsym $mod+Shift+p --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+
 # change focus
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
