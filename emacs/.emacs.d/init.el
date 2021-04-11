@@ -16,7 +16,6 @@
 (setq line-number-mode t)
 (setq column-number-mode t)
 (setq vc-follow-symlinks t)
-(setq evil-want-C-i-jump nil)
 
 
 ;; General Settings
@@ -47,13 +46,14 @@
  '(ivy-count-format "(%d/%d) ")
  '(ivy-use-virtual-buffers t)
  '(ivy-virtual-abbreviate 'full)
+ '(line-number-mode nil)
  '(org-agenda-files
    '("/home/joe/org/gen.org" "/home/joe/org/inbox.org" "/home/joe/org/internships.org"))
  '(package-archives
    '(("melpa" . "http://melpa.org/packages/")
 	 ("gnu" . "https://elpa.gnu.org/packages/")))
  '(package-selected-packages
-   '(helpful latex-preview-pane org-fragtog-mode evil-org org-fragtog web-mode emmet-mode color-identifiers-mode ycmd counsel-projectile projectile vscdark-theme yoshi-theme kaolin-themes spacemacs-theme humanoid-themes zenburn noctilux-theme gruvbox-theme org-cliplink fontawesome evil-better-visual-line company-c-headers yasnippet-snippets company-mode dumb-jump which-key auctex-lua auctex-latexmk auctex autex magit swiper ivy-rich counsel diminish blacken flychecK flycheck elpy helm zenburn-theme use-package smart-tabs-mode jbeans-theme ivy evil doom-themes doom-modeline company)))
+   '(evil-collection helpful latex-preview-pane org-fragtog-mode evil-org org-fragtog web-mode emmet-mode color-identifiers-mode ycmd counsel-projectile projectile vscdark-theme yoshi-theme kaolin-themes spacemacs-theme humanoid-themes zenburn noctilux-theme gruvbox-theme org-cliplink fontawesome evil-better-visual-line company-c-headers yasnippet-snippets company-mode dumb-jump which-key auctex-lua auctex-latexmk auctex autex magit swiper ivy-rich counsel diminish blacken flychecK flycheck elpy helm zenburn-theme use-package smart-tabs-mode jbeans-theme ivy evil doom-themes doom-modeline company)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

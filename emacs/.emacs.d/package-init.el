@@ -34,17 +34,6 @@
   :config
   (dumb-jump-mode))
 
-;;; company
-(use-package company
-  :ensure t
-  :defer t
-  :config
-  (progn
-	;; Use Company for completion
-	(bind-key [remap completion-at-point] #'company-complete company-mode-map))
-  (setq company-idle-delay 0.5)
-  :hook (prog-mode . company-mode))
-
 ;;; WHICH-KEY
 (use-package which-key
   :ensure t
@@ -116,7 +105,13 @@
   :config
   (evil-mode 1)
   (setq evil-want-C-i-jump 't)
+  (setq evil-want-keybinding nil)
   (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes)))
+
+(use-package evil-collection
+  :ensure t
+  :after evil
+  :config (evil-collection-init))
 
 ;;; ALL THE ICONS
 (use-package all-the-icons :ensure t)
@@ -241,10 +236,10 @@
 
 (use-package doom-modeline
   :ensure t
-  :init
-  (doom-modeline-mode 1)
   :custom
-  (doom-modeline-height 10))
+  (doom-modeline-height 10)
+  :config (setq doom-modeline-icon (display-graphic-p))
+  :hook (after-init . doom-modeline-mode))
 
 (provide 'package-init)
 
