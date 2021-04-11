@@ -9,15 +9,25 @@ settings:
   bindings.commands:
     global:
       normal: null
+  content.desktop_capture:
+    https://rfgen.webex.com: true
   content.geolocation:
+    https://www.google.com.ar: false
     https://www.sprint.com: false
-  content.media_capture:
+  content.media.audio_capture:
+    https://rfgen.webex.com: true
+    https://voice.google.com: true
+  content.media.audio_video_capture:
+    https://voice.google.com: true
+  content.media.video_capture:
     https://voice.google.com: true
   content.notifications:
     https://1337x.to: false
+    https://bilgebuysag.cam: false
     https://linuxize.com: false
     https://messages.google.com: true
     https://rectititonle.pro: false
+    https://voice.google.com: false
     https://www.facebook.com: false
     https://www.reddit.com: false
     https://www.youtube.com: false

@@ -80,6 +80,9 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'dracula/vim'
 Plug 'altercation/vim-colors-solarized'
 
+" GLSL Syntax Support
+Plug 'tikhomirov/vim-glsl'
+
 call plug#end()
 
 
@@ -88,18 +91,6 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let mapleader = "\<Space>"
-
-func! WordProcessor()
-	map j gj
-	map k gk
-	setlocal formatoptions=1
-	setlocal noexpandtab
-	setlocal wrap
-	setlocal linebreak
-	setlocal spell spelllang=en_us
-	set complete+=s
-endfu
-com! WP call WordProcessor()
 
 set termguicolors
 set incsearch
@@ -118,7 +109,6 @@ set termencoding=utf-8
 set encoding=utf8
 set ruler
 set autoindent
-set smartindent
 set cinoptions=g0:0
 set tabstop=4        " tab width is 2 spaces
 set shiftwidth=4     " indent also with 2 spaces
@@ -129,10 +119,9 @@ set showmatch
 set nospell
 
 
-highlight NonText ctermbg=none
-highlight Normal ctermbg=none
-highlight LineNr ctermbg=none
-highlight VertSplit ctermbg=none
+" highlight NonText ctermbg=none
+" highlight Normal ctermbg=none
+" highlight LineNr ctermbg=none
 
 nnoremap <C-A-j> <c-w>j
 nnoremap <C-A-k> <c-w>k
@@ -148,20 +137,24 @@ nmap <leader>Q :wqa<CR>
 nmap <leader>p :CtrlPBufTag<CR>
 nmap <leader>/ :noh<CR>
 map <leader>f :YcmCompleter FixIt<CR>
+map <S-F6> :YcmCompleter RefactorRename
 
-map <F4> :!ctags -R<CR><CR>
-nnoremap <F5> = :YcmForceCompileAndDiagnostics<CR>
 nnoremap <F7> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 nmap <F9> :TagbarTogglePause<CR>
 set foldmethod=syntax
-set foldlevel=1
 set foldnestmax=1
+set foldlevel=1
 " Workaround to prevent vim from unfolding everything
 " after entering an opening brace
-autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 
+" see github.com/SirVer/utilisnips/issues/1202
+if has('nvim')
+    au VimEnter * if exists('#UltiSnips_AutoTrigger')
+        \ |     exe 'au! UltiSnips_AutoTrigger'
+        \ |     aug! UltiSnips_AutoTrigger
+        \ | endif
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -197,9 +190,6 @@ nmap <leader>l :bnext<CR>
 " Prev buffer
 nmap <leader>h :bprev<CR>
 
-" Close buffer, move to previous
-nmap <leader>bq :bp <BAR> bd #<CR>
-
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
 
@@ -215,7 +205,9 @@ set laststatus=2
 
 let g:ycm_global_ycm_extra_conf = '~/.dotfiles/utils/ycm_config.py'
 let g:ycm_confirm_extra_conf = 0
-set completeopt-=preview
+let g:ycm_autoclose_preview_window_after_insertion = 1
+" let g:ycm_autoclose_preview_window_after_completion = 1
+" set completeopt-=preview
 
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'

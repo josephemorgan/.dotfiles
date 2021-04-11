@@ -42,6 +42,8 @@ bindsym $mod+Shift+u exec --no-startup-id redshift -x
 
 floating_modifier $mod
 
+bindsym $mod+f6 --no-startup-id dunstctl close
+
 # start a terminal with tmux
 bindsym $mod+Return exec --no-startup-id $term -e tmux
 
@@ -72,13 +74,10 @@ bindsym $mod+g exec --no-startup-id $term -e ranger
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# Take a screenshot
-bindsym $mod+Shift+s exec --no-startup-id scrot -s ~/dev/60/tax_calc_ext/screenshot.png
-
 # Flash focused window
 bindsym $mod+BackSpace exec $flash
 
-bindsym $mod+Shift+p --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym $mod+Shift+p --release exec --no-startup-id "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 
 # change focus
 bindsym $mod+$left focus left
@@ -132,9 +131,9 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 
 # Enable Multimedia Controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%; exec --no-startup-id pactl set-sink-volume 1 +5%; exec --no-startup-id pactl set-sink-volume 2 +5%;
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%; exec --no-startup-id pactl set-sink-volume 1 +5%; exec --no-startup-id pactl set-sink-volume 2 +5%;
 
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%; exec --no-startup-id pactl set-sink-volume 1 -5%; exec --no-startup-id pactl set-sink-volume 2 -5%;
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%; exec --no-startup-id pactl set-sink-volume 1 -5%; exec --no-startup-id pactl set-sink-volume 2 -5%;
 
 bindsym XF86AudioMute exec  --no-startup-id pactl set-sink-mute 2 toggle
 
@@ -195,7 +194,7 @@ mode "Launch" {
 	bindsym w exec --no-startup-id qutebrowser, mode "default"
 	bindsym r exec --no-startup-id "i3-sensible-terminal -e ranger", mode "default"
 	bindsym e exec --no-startup-id "emacsclient -c", mode "default"
-	bindsym o exec --no-startup-id "emacsclient -c ~/org/sems20.org", mode "default"
+	bindsym o exec --no-startup-id "emacsclient -c ~/org/sems21.org", mode "default"
 	bindsym d exec rofi -show drun -matching fuzzy -terminal /usr/bin/termite, mode "default"
 	bindsym s exec rofi -show ssh -matching fuzzy -terminal /usr/bin/termitetermite, mode "default"
 	bindsym i exec rofi -show window -matching fuzzy -terminal /usr/bin/termite, mode "default"
@@ -211,33 +210,30 @@ bindsym $mod+q mode "Launch"
 
 ### - i3bar Configuration - ###
 
-bar {
-	i3bar_command i3bar -t
-	status_command i3status -c ~/.i3/i3status
-	position top
-	strip_workspace_numbers yes
-	height 25
-	colors {
-		background $transparent
-		statusline #ffffff
-		separator #666666
-		focused_workspace $transparent $transparent $highlight
-		active_workspace $transparent $transparent $lightgray
-		inactive_workspace $transparent $transparent $lightgray
-		urgent_workspace $transparent $transparent $darkred
-	}
-}
+# bar {
+#     i3bar_command i3bar -t
+#     status_command i3status -c ~/.i3/i3status
+#     position top
+#     strip_workspace_numbers yes
+#     height 25
+#     colors {
+#         background $transparent
+#         statusline #ffffff
+#         separator #666666
+#         focused_workspace $transparent $transparent $highlight
+#         active_workspace $transparent $transparent $lightgray
+#         inactive_workspace $transparent $transparent $lightgray
+#         urgent_workspace $transparent $transparent $darkred
+#     }
+# }
 
 
 ### - Startup - ###
 
-# Swap Caps-Lock and Escape
-
 exec --no-startup-id picom -f -b
 exec --no-startup-id nm-applet
 exec --no-startup-id unclutter
-
-
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 ### - Expirimental - ###
 # Scratchpad terminal.

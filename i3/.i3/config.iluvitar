@@ -14,9 +14,9 @@ set $tag2 "2: IDEA"
 set $tag3 "3: Server"
 set $tag4 "4: Email"
 set $tag0 "5: Org"
-set $atag1 "6: Web 1"
-set $atag2 "7: Web 2"
-set $atag3 "8: Web 3"
+set $atag1 "6: Web"
+set $atag2 "7: Reference"
+set $atag3 "8: Social"
 set $atag4 "9: Discord"
 set $atag5 "10: Music"
 
@@ -63,8 +63,7 @@ bindsym $mod+Shift+8 move container to workspace $tag3
 bindsym $mod+Shift+9 move container to workspace $tag4
 bindsym $mod+Shift+0 move container to workspace $tag0
 
-exec --no-startup-id xrandr --output DP-2 --mode 2560x1440 --primary --output HDMI-0 --mode 1920x1200 --rotate left --left-of DP-2
-exec --no-startup-id ./.set_wp.sh
-exec --no-startup-id dunst
+bindcode 199 exec --no-startup-id pacmd set-sink-port 0 analog-output-lineout
+bindcode 200 exec --no-startup-id pacmd set-sink-port 0 analog-output-headphones
 
 ###### END CONFIG.ILUVITAR ######

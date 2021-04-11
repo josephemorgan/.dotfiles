@@ -1,9 +1,13 @@
+;;; package-init.el --- Initializes emacs packages
+;;; Commentary:
+;; 
+
 (require 'package)
+;;; Code:
+
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
-(package-initialize)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -18,18 +22,17 @@
 (use-package yasnippet
   :ensure t
   :config
-  (yas-global-mode 1)
-  (use-package yasnippet-snippets
-	:ensure t
-	)
-  )
+  (yas-global-mode 1))
+
+(use-package yasnippet-snippets
+  :after yasnippet
+  :ensure t)
 
 ;;; DUMB-JUMP
 (use-package dumb-jump
   :ensure t
   :config
-  (dumb-jump-mode)
-  )
+  (dumb-jump-mode))
 
 ;;; company
 (use-package company
@@ -40,36 +43,19 @@
 	;; Use Company for completion
 	(bind-key [remap completion-at-point] #'company-complete company-mode-map))
   (setq company-idle-delay 0.5)
-  :hook (prog-mode . company-mode)
-  )
-
-(use-package company-ycmd
-  :ensure t
-  :config
-  (company-ycmd-setup)
-  )
-
-(use-package ycmd
-  :ensure t
-  :init
-  (add-hook 'prog-mode-hook #'global-ycmd-mode)
-  (set-variable 'ycmd-server-command '("python" "/home/joe/make/ycmd/ycmd/"))
-										;(set-variable 'ycmd-global-config "/home/joe/.dotfiles/utils/ycm_config.py")
-  )
+  :hook (prog-mode . company-mode))
 
 ;;; WHICH-KEY
 (use-package which-key
   :ensure t
   :config
-  (which-key-mode)
-  )
+  (which-key-mode))
 
 ;;; vscdark-theme
 (use-package vscdark-theme
   :ensure t
   :config
-  (load-theme 'vscdark t)
-  )
+  (load-theme 'vscdark t))
 
 ;;; MAGIT
 (use-package magit
@@ -87,18 +73,19 @@
 (use-package org
   :ensure t
   :config
-  (setq org-agenda-files '("~/org"
-						   "~/org/teamProject"))
+  (setq org-agenda-files '("~/org/"))
   (setq org-startup-indented 1
+		org-startup-folded 1
+		org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
 		org-default-notes-file (concat org-directory "/inbox.org")
+		org-agenda-window-setup 'only-window
+		org-agenda-restore-windows-after-quit t
 		org-refile-targets '(
 							 (nil :maxlevel . 9)
 							 (org-agenda-files :maxlevel . 9)
 							 )
-		org-agenda-window-setup 'other-window
-		org-agenda-restore-windows-after-quit t
-		org-export-with-section-numbers nil
-		)
+		org-export-with-section-numbers nil)
+
   (define-key global-map "\C-cc" 'org-capture)
   (global-set-key (kbd "C-c l") 'org-store-link)
   (global-set-key (kbd "C-c a") 'org-agenda)
@@ -108,16 +95,27 @@
    '((C . t)
 	 (java . t)
 	 (shell . t)
+	 (R . t)
 	 ))
-  (add-hook 'org-mode-hook 'turn-on-flyspell)
-  (add-hook 'org-mode-hook 'visual-line-mode)
-  )
+  :hook
+  (org-mode . turn-on-flyspell)
+  (org-mode . visual-line-mode)
+  (org-mode . evil-org-mode))
+
+;;; evil-org
+(use-package evil-org
+  :ensure t
+  :after
+  org
+  :hook
+  (evil-org-mode . (lambda () (evil-org-set-key-theme))))
 
 ;;; EVIL
 (use-package evil
   :ensure t
   :config
   (evil-mode 1)
+  (setq evil-want-C-i-jump 't)
   (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes)))
 
 ;;; ALL THE ICONS
@@ -131,22 +129,44 @@
 ;; IVY
 (use-package ivy
   :ensure t
-  :defer 0.1
-  :bind (("C-c C-r" . ivy-resume)
-		 ("C-x B" . ivy-switch-buffer-other-window))
-  :custom
-  (ivy-count-format "(%d/%d) ")
-  (ivy-use-virtual-buffers t)
-  :config (ivy-mode))
+  :bind (("C-s" . swiper)
+		 :map ivy-minibuffer-map
+		 ("TAB" . ivy-alt-done)
+		 ("C-l" . ivy-alt-done)
+		 ("C-j" . ivy-next-line)
+		 ("C-k" . ivy-previous-line)
+		 :map ivy-switch-buffer-map
+		 ("C-k" . ivy-previous-line)
+		 ("C-l" . ivy-done)
+		 ("C-d" . ivy-switch-buffer-kill)
+		 :map ivy-reverse-i-search-map
+		 ("C-k" . ivy-previous-line)
+		 ("C-d" . ivy-reverse-i-search-kill))
+  :init (ivy-mode 1))
 
 ;;; IVY-RICH
 (use-package ivy-rich
   :ensure t
   :after ivy
+  :init (ivy-rich-mode 1)
   :custom
   (ivy-virtual-abbreviate 'full
 						  ivy-rich-switch-buffer-align-virtual-buffer t
 						  ivy-rich-path-style 'abbrev))
+;;; COUNSEL
+(use-package counsel
+  :ensure t
+  :after ivy
+  :config
+  (counsel-mode t)
+  (counsel-projectile-mode )
+  :bind (("C-c k" . counsel-ag)))
+
+;;; SWIPER
+(use-package swiper
+  :ensure t
+  :after ivy)
+  
 ;;; projectile
 (use-package projectile
   :ensure t
@@ -155,20 +175,9 @@
   (define-key evil-normal-state-map (kbd "C-p") nil)
   (global-set-key (kbd "C-p") 'projectile-command-map)
   (projectile-mode +1)
-  (define-key projectile-command-map (kbd "f") 'counsel-projectile)
-  )
-
-;;; COUNSEL
-(use-package counsel
-  :ensure t
-  :after ivy
-  :config
-  (counsel-mode +1)
-  (counsel-projectile-mode +1)
-  )
+  (define-key projectile-command-map (kbd "f") 'counsel-projectile))
 
 ;;; emmet-mode
-										; Expands various key combinations into html/css code
 (use-package emmet-mode
   :ensure t
   )
@@ -187,29 +196,56 @@
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
   )
 
-;;; SWIPER
-  (use-package swiper
-	:ensure t
-	:after ivy
-	:bind (("C-s" . swiper)
-		   ("C-r" . swiper)))
-
 ;;; ELPY
-  (use-package elpy
-	:ensure t
-	:defer t
-	:init
-	(elpy-enable))
+(use-package elpy
+  :ensure t
+  :defer t
+  :init
+  (elpy-enable))
 
 ;;; FLYCHECK
-  (use-package flycheck
-	:ensure t
-	:init (global-flycheck-mode))
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode))
 
 ;;; BLACKEN
-  (use-package blacken :ensure t)
+(use-package blacken :ensure t)
 
 ;;; CALFW
-  (use-package calfw
-	:ensure t
-	)
+(use-package calfw :ensure t)
+
+(use-package latex-preview-pane
+  :ensure t
+  :defer t
+  :config
+  (latex-preview-pane-enable))
+
+(use-package helpful
+  :ensure t
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
+
+(use-package doom-themes
+  :ensure t
+  :config
+  (setq doom-themes-enable-bold t
+		doom-themes-enable-italic t)
+  (load-theme 'doom-one t))
+
+(use-package doom-modeline
+  :ensure t
+  :init
+  (doom-modeline-mode 1)
+  :custom
+  (doom-modeline-height 10))
+
+(provide 'package-init)
+
+;;; package-init.el ends here

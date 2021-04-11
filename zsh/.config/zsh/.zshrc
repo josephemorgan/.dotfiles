@@ -43,29 +43,15 @@ export LC_CTYPE="en_US.UTF-8"
 export ANDROID_HOME="/home/$USER/Android/Sdk/"
 
 # User Specified Aliases
-alias invert="/home/$USER/Scripts/invert_qute.sh"
-alias revert="/home/$USER/Scripts/revert_qute.sh"
-alias ekeymap="vim /home/$USER/qmk_firmware/keyboards/ergodox_ez/keymaps/josephemorgan91"
 alias rename=perl-rename
-alias zconfig="vim ~/.zshrc"
 alias zsource="source $ZDOTDIR/.zshrc"
 alias ls="ls --color=auto"
 alias la="ls -a --color=auto"
 alias ll="ls -la --color=auto"
-alias keyswapper="~/Scripts/keyswapper"
-alias ctags="ctags -R -f ./.git/tags ."
 alias R="R --quiet"
-alias update-grub="sudo zsh ~/Scripts/update-grub"
-alias vimconfig="vim ~/.vimrc"
 alias vim="nvim"
-
-# Setup folder for dev
-alias cconfig="cp ~/Scripts/ycm_c_config ./.ycm_extra_config.py"
-alias gitignore="cp ~/.dotfiles/.gitignore ./.gitignore"
-alias readme="cp ~/.dotfiles/.README_TEMPLATE ./README"
-alias gogit="readme & gitignore & git init"
-alias vpnstart="sudo openconnect --protocol=gp vpn.csus.edu"
 alias emacs="emacsclient -c"
+alias rmdir="rmdir --ignore-fail-on-non-empty"
 
 set_wallpaper() {
 	echo "Setting wallpaper: $PWD/$1\n"
@@ -104,3 +90,5 @@ fi
 if [[ "${HOST}" == "Mithrandir" ]]; then
 	sh /home/joe/.dotfiles/zsh/.zshrc_mithrandir
 fi
+
+source /home/joe/.config/broot/launcher/bash/br
