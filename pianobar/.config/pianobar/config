@@ -1,6 +1,0 @@
-audio_quality = high
-autostart_station = 0
-event_command = ~/.config/pianobar/event_command.py
-
-password = darktower19
-user = aimforthepavement@gmail.com
