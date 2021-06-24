@@ -63,39 +63,33 @@
   :ensure t
   :config
   (setq org-agenda-files '("~/org/"))
-  (setq org-startup-indented 1
-		org-startup-folded 1
-		org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
-		org-default-notes-file (concat org-directory "/inbox.org")
-		org-agenda-window-setup 'only-window
-		org-agenda-restore-windows-after-quit t
-		org-refile-targets '(
-							 (nil :maxlevel . 9)
-							 (org-agenda-files :maxlevel . 9)
-							 )
-		org-export-with-section-numbers nil)
-
+  (setq org-startup-indented 1)
+  (setq org-startup-folded 1)
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
+  (setq org-default-notes-file (concat org-directory "/inbox.org"))
+  (setq org-agenda-window-setup 'only-window)
+  (setq org-agenda-restore-windows-after-quit t)
+  (setq org-refile-targets '((nil :maxlevel . 9) (org-agenda-files :maxlevel . 9)))
+  (setq org-export-with-section-numbers nil)
+  (setq org-deadline-warning-days 28)
+  (setq org-agenda-custom-commands '(("D" "Upcoming Deadlines" tags "DEADLINE>=\"<today>\"")))
+  (setq org-file-apps '((auto-mode . emacs)
+                        (directory . emacs)
+                        ("\\.mm\\'" . default)
+                        ("\\.x?html?\\'" . default)
+                        ("\\.pdf\\'" . "zathura \"%s\"")))
   (define-key global-map "\C-cc" 'org-capture)
   (global-set-key (kbd "C-c l") 'org-store-link)
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((C . t)
-	 (java . t)
-	 (shell . t)
-	 (R . t)
-	 ))
+  (org-babel-do-load-languages 'org-babel-load-languages '((C . t) (java . t) (shell . t) (R . t)))
   :hook
-  (org-mode . turn-on-flyspell)
-  (org-mode . visual-line-mode)
-  (org-mode . evil-org-mode))
+  (flyspell-mode visual-line-mode evil-org-mode))
 
 ;;; evil-org
 (use-package evil-org
   :ensure t
-  :after
-  org
+  :after (org evil)
   :hook
   (evil-org-mode . (lambda () (evil-org-set-key-theme))))
 
@@ -103,10 +97,11 @@
 (use-package evil
   :ensure t
   :config
+  (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
   (evil-mode 1)
+  :init
   (setq evil-want-C-i-jump 't)
-  (setq evil-want-keybinding nil)
-  (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes)))
+  (setq evil-want-keybinding nil))
 
 (use-package evil-collection
   :ensure t
@@ -125,18 +120,18 @@
 (use-package ivy
   :ensure t
   :bind (("C-s" . swiper)
-		 :map ivy-minibuffer-map
-		 ("TAB" . ivy-alt-done)
-		 ("C-l" . ivy-alt-done)
-		 ("C-j" . ivy-next-line)
-		 ("C-k" . ivy-previous-line)
-		 :map ivy-switch-buffer-map
-		 ("C-k" . ivy-previous-line)
-		 ("C-l" . ivy-done)
-		 ("C-d" . ivy-switch-buffer-kill)
-		 :map ivy-reverse-i-search-map
-		 ("C-k" . ivy-previous-line)
-		 ("C-d" . ivy-reverse-i-search-kill))
+         :map ivy-minibuffer-map
+         ("TAB" . ivy-partial-or-done)
+         ("C-l" . ivy-alt-done)
+         ("C-j" . ivy-next-line)
+         ("C-k" . ivy-previous-line)
+         :map ivy-switch-buffer-map
+         ("C-k" . ivy-previous-line)
+         ("C-l" . ivy-done)
+         ("C-d" . ivy-switch-buffer-kill)
+         :map ivy-reverse-i-search-map
+         ("C-k" . ivy-previous-line)
+         ("C-d" . ivy-reverse-i-search-kill))
   :init (ivy-mode 1))
 
 ;;; IVY-RICH
@@ -146,31 +141,34 @@
   :init (ivy-rich-mode 1)
   :custom
   (ivy-virtual-abbreviate 'full
-						  ivy-rich-switch-buffer-align-virtual-buffer t
-						  ivy-rich-path-style 'abbrev))
+                          ivy-rich-switch-buffer-align-virtual-buffer t
+                          ivy-rich-path-style 'abbrev))
 ;;; COUNSEL
 (use-package counsel
   :ensure t
   :after ivy
   :config
   (counsel-mode t)
-  (counsel-projectile-mode )
+  (counsel-projectile-mode t)
   :bind (("C-c k" . counsel-ag)))
 
 ;;; SWIPER
 (use-package swiper
   :ensure t
   :after ivy)
-  
+
 ;;; projectile
 (use-package projectile
   :ensure t
-  :after ivy
-  :config
-  (define-key evil-normal-state-map (kbd "C-p") nil)
-  (global-set-key (kbd "C-p") 'projectile-command-map)
-  (projectile-mode +1)
-  (define-key projectile-command-map (kbd "f") 'counsel-projectile))
+  :diminish projectile-mode
+  :config (projectile-mode)
+  :custom (projectile-completion-system 'ivy)
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :init
+  (when (file-directory-p "~/dev/")
+    (setq projectile-project-search-path '("~/dev")))
+  (setq projectile-switch-project-action #'projectile-dired))
 
 ;;; emmet-mode
 (use-package emmet-mode
@@ -231,7 +229,7 @@
   :ensure t
   :config
   (setq doom-themes-enable-bold t
-		doom-themes-enable-italic t)
+        doom-themes-enable-italic t)
   (load-theme 'doom-one t))
 
 (use-package doom-modeline
@@ -240,6 +238,12 @@
   (doom-modeline-height 10)
   :config (setq doom-modeline-icon (display-graphic-p))
   :hook (after-init . doom-modeline-mode))
+
+(use-package ivy-hydra
+  :ensure t)
+
+(use-package pdf-tools
+  :ensure t)
 
 (provide 'package-init)
 
