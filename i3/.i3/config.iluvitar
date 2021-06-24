@@ -5,15 +5,16 @@
 set $mod Mod4
 set $term termite
 set $flash --no-startup-id bash ~/Scripts/flash_win.sh
-set $main DP-2
-set $aux HDMI-0
+set $main HDMI-0
+set $aux DP-1
 
 # Name workspaces
 set $tag1 "1: Home"
 set $tag2 "2: IDEA"
 set $tag3 "3: Server"
 set $tag4 "4: Email"
-set $tag0 "5: Org"
+set $tag5 "5: Org"
+
 set $atag1 "6: Web"
 set $atag2 "7: Reference"
 set $atag3 "8: Social"
@@ -25,7 +26,8 @@ workspace $tag1 output $main
 workspace $tag2 output $main
 workspace $tag3 output $main
 workspace $tag4 output $main
-workspace $tag0 output $main
+workspace $tag5 output $main
+
 workspace $atag1 output $aux
 workspace $atag2 output $aux
 workspace $atag3 output $aux
@@ -40,30 +42,30 @@ assign [class="jetbrains"] $tag2
 exec --no-startup-id /usr/bin/discord
 
 # switch to workspace
-bindsym $mod+6 workspace $tag1
-bindsym $mod+7 workspace $tag2
-bindsym $mod+8 workspace $tag3
-bindsym $mod+9 workspace $tag4
-bindsym $mod+0 workspace $tag0
-bindsym $mod+1 workspace $atag1
-bindsym $mod+2 workspace $atag2
-bindsym $mod+3 workspace $atag3
-bindsym $mod+4 workspace $atag4
-bindsym $mod+5 workspace $atag5
+bindsym $mod+1 workspace $tag1
+bindsym $mod+2 workspace $tag2
+bindsym $mod+3 workspace $tag3
+bindsym $mod+4 workspace $tag4
+bindsym $mod+5 workspace $tag5
+
+bindsym $mod+6 workspace $atag1
+bindsym $mod+7 workspace $atag2
+bindsym $mod+8 workspace $atag3
+bindsym $mod+9 workspace $atag4
+bindsym $mod+0 workspace $atag5
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $atag1
-bindsym $mod+Shift+2 move container to workspace $atag2
-bindsym $mod+Shift+3 move container to workspace $atag3
-bindsym $mod+Shift+4 move container to workspace $atag4
-bindsym $mod+Shift+5 move container to workspace $atag5
-bindsym $mod+Shift+6 move container to workspace $tag1
-bindsym $mod+Shift+7 move container to workspace $tag2
-bindsym $mod+Shift+8 move container to workspace $tag3
-bindsym $mod+Shift+9 move container to workspace $tag4
-bindsym $mod+Shift+0 move container to workspace $tag0
+bindsym $mod+Shift+1 move container to workspace $tag1
+bindsym $mod+Shift+2 move container to workspace $tag2
+bindsym $mod+Shift+3 move container to workspace $tag3
+bindsym $mod+Shift+4 move container to workspace $tag4
+bindsym $mod+Shift+5 move container to workspace $tag0
+bindsym $mod+Shift+6 move container to workspace $atag1
+bindsym $mod+Shift+7 move container to workspace $atag2
+bindsym $mod+Shift+8 move container to workspace $atag3
+bindsym $mod+Shift+9 move container to workspace $atag4
+bindsym $mod+Shift+0 move container to workspace $atag5
 
-bindcode 199 exec --no-startup-id pacmd set-sink-port 0 analog-output-lineout
-bindcode 200 exec --no-startup-id pacmd set-sink-port 0 analog-output-headphones
+bindcode 200 exec --no-startup-id ~/Scripts/toggle_audio_output.sh
 
 ###### END CONFIG.ILUVITAR ######

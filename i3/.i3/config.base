@@ -8,8 +8,8 @@ set $green        #42b879
 set $darkred      #8b0000
 set $darkgray     #515151
 set $lightgray    #D3D3D3
-set $transparent  #00000033
-set $highlight	  #e94141
+set $highlight	  #E18184
+set $unfocused    #429ED0
 
 set $bg-color 	         #2f343f
 set $inactive-bg-color   #2f343f
@@ -26,12 +26,12 @@ set $right l
 
 ### - Appearance - ###
 font pango:System San Francisco Display 10
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 2
 gaps inner 12
 
 #Color			  Border	   BG         text	       indicator	child_border	
 client.focused    $transparent $black     $darkwhite   $highlight	$highlight
-client.unfocused  $transparent $black     $lightgray   $darkblack	$darkblack
+client.unfocused  $transparent $black     $lightgray   $unfocused	$unfocused
 client.urgent     $transparent $darkred   $lightgray   $darkred		$darkred
 client.background $transparent
 
@@ -118,7 +118,7 @@ bindsym $mod+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 # Will NOT show floating terminal window
 
-bindsym $mod+Shift+minus [instance="^(?!terminator).*$"] scratchpad show, floating disable
+bindsym $mod+Shift+minus [instance="^(?!termite).*$"] scratchpad show, floating disable
 
 bindsym $mod+y exec bash ~/Scripts/invert_qute.sh
 
@@ -230,7 +230,7 @@ bindsym $mod+q mode "Launch"
 
 ### - Startup - ###
 
-exec --no-startup-id picom -f -b
+exec --no-startup-id picom -f -b --experimental-backends
 exec --no-startup-id nm-applet
 exec --no-startup-id unclutter
 exec_always --no-startup-id ~/.config/polybar/launch.sh
