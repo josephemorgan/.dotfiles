@@ -53,13 +53,6 @@ alias vim="nvim"
 alias emacs="emacsclient -c"
 alias rmdir="rmdir --ignore-fail-on-non-empty"
 
-set_wallpaper() {
-	echo "Setting wallpaper: $PWD/$1\n"
-	ln -s -f -v $PWD/$1 /home/joe/.wallpaper.jpg
-	ln -s -f -v $PWD/$2 /home/joe/.wallpaper-lh.jpg
-	feh --bg-scale $PWD/$2 --bg-scale $PWD/$1
-}
-
 # Uses xclip application to pipe output to clipboard.
 # Usage - $ cat /path/to/a/file | xclip
 # Works on any utility that produces output

@@ -8,8 +8,9 @@ set $green        #42b879
 set $darkred      #8b0000
 set $darkgray     #515151
 set $lightgray    #D3D3D3
-set $highlight	  #E18184
-set $unfocused    #429ED0
+set $highlight	  #f28080
+set $unfocused    #1b3da6
+set $indicator	  #2585d9
 
 set $bg-color 	         #2f343f
 set $inactive-bg-color   #2f343f
@@ -29,11 +30,12 @@ font pango:System San Francisco Display 10
 for_window [class="^.*"] border pixel 2
 gaps inner 12
 
-#Color			  Border	   BG         text	       indicator	child_border	
-client.focused    $transparent $black     $darkwhite   $highlight	$highlight
-client.unfocused  $transparent $black     $lightgray   $unfocused	$unfocused
-client.urgent     $transparent $darkred   $lightgray   $darkred		$darkred
-client.background $transparent
+#Color			  			Border	  	 BG        	text	     indicator	child_border	
+client.focused    			$transparent $black     $darkwhite   $indicator $highlight
+client.focused_inactive  	$transparent $black     $lightgray   $unfocused	$unfocused
+client.unfocused  			$transparent $black     $lightgray   $unfocused $unfocused
+client.urgent     			$transparent $darkred   $lightgray   $darkred	$darkred
+client.background 			$transparent
 
 ### - Control Bindings - ###
 
@@ -128,7 +130,6 @@ bindsym $mod+Shift+y exec bash ~/Scripts/revert_qutebrowser.sh
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
 
 # Enable Multimedia Controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%; exec --no-startup-id pactl set-sink-volume 1 +5%; exec --no-startup-id pactl set-sink-volume 2 +5%;
@@ -196,7 +197,7 @@ mode "Launch" {
 	bindsym e exec --no-startup-id "emacsclient -c", mode "default"
 	bindsym o exec --no-startup-id "emacsclient -c ~/org/sems21.org", mode "default"
 	bindsym d exec rofi -show drun -matching fuzzy -terminal /usr/bin/termite, mode "default"
-	bindsym s exec rofi -show ssh -matching fuzzy -terminal /usr/bin/termitetermite, mode "default"
+	bindsym s exec rofi -show ssh -matching fuzzy -terminal /usr/bin/termite, mode "default"
 	bindsym i exec rofi -show window -matching fuzzy -terminal /usr/bin/termite, mode "default"
 
 # back to normal: Enter or Escape

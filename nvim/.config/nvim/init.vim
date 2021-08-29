@@ -34,8 +34,10 @@ Plug 'easymotion/vim-easymotion'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Insanely good tab code completion
-Plug 'ycm-core/YouCompleteMe'
+" Plug 'ycm-core/YouCompleteMe'
 " Plug 'rdnetto/YCM-Generator'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
 
 " IDE-like debugging
 Plug 'puremourning/vimspector'
@@ -72,9 +74,6 @@ Plug 'jvanja/vim-bootstrap4-snippets'
 Plug 'pangloss/vim-javascript'
 Plug 'briancollins/vim-jst'
 
-" Cool Icons
-Plug 'ryanoasis/vim-devicons'
-
 " Some colorschemes - ymmv
 Plug 'nanotech/jellybeans.vim'
 Plug 'dracula/vim'
@@ -82,6 +81,9 @@ Plug 'altercation/vim-colors-solarized'
 
 " GLSL Syntax Support
 Plug 'tikhomirov/vim-glsl'
+
+" Language Pack
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
@@ -95,7 +97,6 @@ let mapleader = "\<Space>"
 set termguicolors
 set incsearch
 set hlsearch
-set guifont=Iosevka\ Nerd\ Font\ 11
 set relativenumber
 set comments=sl:/*,mb:\ *,elx:\ */
 au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -110,34 +111,23 @@ set encoding=utf8
 set ruler
 set autoindent
 set cinoptions=g0:0
-set tabstop=4        " tab width is 2 spaces
-set shiftwidth=4     " indent also with 2 spaces
+set tabstop=2        " tab width is 2 spaces
+set softtabstop=2
+set shiftwidth=2     " indent also with 2 spaces
 set textwidth=0
 set t_Co=256
 set number
 set showmatch
 set nospell
+set expandtab
 
-
-" highlight NonText ctermbg=none
-" highlight Normal ctermbg=none
-" highlight LineNr ctermbg=none
-
-nnoremap <C-A-j> <c-w>j
-nnoremap <C-A-k> <c-w>k
-nnoremap <C-A-h> <c-w>h
-nnoremap <C-A-l> <c-w>l
 nnoremap <c-<Left>> <c-w>h
 nnoremap <c-<Right>> <c-w>l
 
-map <leader>t <C-W>}
 nmap <leader>w :wa<CR>
 nmap <leader>Q :wqa<CR>
 nmap <leader>Q :wqa<CR>
-nmap <leader>p :CtrlPBufTag<CR>
 nmap <leader>/ :noh<CR>
-map <leader>f :YcmCompleter FixIt<CR>
-map <S-F6> :YcmCompleter RefactorRename
 
 nnoremap <F7> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
@@ -150,11 +140,17 @@ set foldlevel=1
 
 " see github.com/SirVer/utilisnips/issues/1202
 if has('nvim')
-    au VimEnter * if exists('#UltiSnips_AutoTrigger')
+  au VimEnter * if exists('#UltiSnips_AutoTrigger')
         \ |     exe 'au! UltiSnips_AutoTrigger'
         \ |     aug! UltiSnips_AutoTrigger
         \ | endif
 endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" FileType Specific Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd Filetype cs setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -268,5 +264,118 @@ let g:UltiSnipsJumpBackwardTrigger="<c-h>"
 """ ctrl-p config 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_map = '<C-P>'
+let g:ctrlp_cmd = 'CtrlP'
+nnoremap <C-;> :CtrlPBuffer<cr>
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" lsp config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+lua << EOF
+require'lspconfig'.pyright.setup{}
+require'lspconfig'.tsserver.setup{}
+
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require'lspconfig'.html.setup {
+  capabilities = capabilities,
+  }
+
+require'lspconfig'.cssls.setup {
+  capabilities = capabilities,
+  }
+
+vim.o.completeopt = "menuone,noselect"
+
+require'compe'.setup {
+enabled = true;
+autocomplete = true;
+debug = false;
+min_length = 1;
+preselect = 'enable';
+throttle_time = 80;
+source_timeout = 200;
+incomplete_delay = 400;
+max_abbr_width = 100;
+max_kind_width = 100;
+max_menu_width = 100;
+documentation = false;
+
+source = {
+  path = true;
+  buffer = true;
+  calc = true;
+  vsnip = true;
+  nvim_lsp = true;
+  nvim_lua = true;
+  spell = true;
+  tags = true;
+  snippets_nvim = true;
+  treesitter = true;
+  };
+}
+local t = function(str)
+return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+local col = vim.fn.col('.') - 1
+if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+  return true
+else
+  return false
+end
+end
+
+-- Use (s-)tab to:
+--- move to prev/next item in completion menuone
+--- jump to prev/next snippet's placeholder
+_G.tab_complete = function()
+if vim.fn.pumvisible() == 1 then
+  return t "<C-n>"
+elseif vim.fn.call("vsnip#available", {1}) == 1 then
+  return t "<Plug>(vsnip-expand-or-jump)"
+elseif check_back_space() then
+  return t "<Tab>"
+else
+  return vim.fn['compe#complete']()
+end
+end
+_G.s_tab_complete = function()
+if vim.fn.pumvisible() == 1 then
+  return t "<C-p>"
+elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+  return t "<Plug>(vsnip-jump-prev)"
+else
+  -- If <S-Tab> is not working in your terminal, change it to <C-h>
+  return t "<S-Tab>"
+end
+end
+
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+
+EOF
+
+" LSP config (the mappings used in the default file don't quite work right)
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <C-K> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-S-N> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> <C-N> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <silent> <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
+
+" auto-format
+autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
