@@ -1,2 +1,6 @@
 #!/bin/zsh
 alias process_torrents="python3 /home/joe/Scripts/torrent_processor.py"
+
+export DOTNET_ROOT=$HOME/.dotnet
+export PATH=$PATH:$HOME/.dotnet
+export ASPNETCORE_URLS="http://*:5001"

@@ -83,5 +83,3 @@ fi
 if [[ "${HOST}" == "Mithrandir" ]]; then
 	sh /home/joe/.dotfiles/zsh/.zshrc_mithrandir
 fi
-
-source /home/joe/.config/broot/launcher/bash/br
