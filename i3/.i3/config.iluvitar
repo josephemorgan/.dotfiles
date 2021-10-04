@@ -5,21 +5,21 @@
 set $mod Mod4
 set $term alacritty
 set $flash --no-startup-id bash ~/Scripts/flash_win.sh
-set $main DP-5
+set $main DP-0
 set $aux HDMI-0
 
 # Name workspaces
-set $tag1 "1: Home"
-set $tag2 "2: IDEA"
-set $tag3 "3: Server"
-set $tag4 "4: Email"
-set $tag5 "5: Org"
+set $tag1 "1:I"
+set $tag2 "2:II"
+set $tag3 "3:III"
+set $tag4 "4:IV"
+set $tag5 "5:V"
 
-set $atag1 "6: Web"
-set $atag2 "7: Reference"
-set $atag3 "8: Social"
-set $atag4 "9: Discord"
-set $atag5 "10: Music"
+set $atag1 "6:VI"
+set $atag2 "7:VII"
+set $atag3 "8:VIII"
+set $atag4 "9:IX"
+set $atag5 "10:X"
 
 # Assign Monitors
 workspace $tag1 output $main

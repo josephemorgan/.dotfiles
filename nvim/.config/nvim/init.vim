@@ -266,7 +266,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-h>"
 
 let g:ctrlp_map = '<C-P>'
 let g:ctrlp_cmd = 'CtrlP'
-nnoremap <C-;> :CtrlPBuffer<cr>
+nnoremap <leader>p :CtrlPBuffer<cr>
 
 
 
@@ -276,6 +276,7 @@ nnoremap <C-;> :CtrlPBuffer<cr>
 lua << EOF
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.tsserver.setup{}
+require'lspconfig'.clangd.setup{}
 
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -374,8 +375,11 @@ nnoremap <silent> <C-S-N> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <C-N> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <silent> <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> <leader>ff <cmd>lua vim.lsp.buf.formatting()<CR>
 
 " auto-format
 autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.c lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.cpp lua vim.lsp.buf.formatting_sync(nil, 100)

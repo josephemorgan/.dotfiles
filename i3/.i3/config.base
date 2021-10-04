@@ -56,7 +56,7 @@ bindsym $mod+Shift+Return exec --no-startup-id $term
 exec --no-startup-id $term -t quick_term
 for_window [title="quick_term"] floating enable, move scratchpad, scratchpad show;
 for_window [title="quick_term"] resize grow left 200, resize grow right 200, resize grow down 300, resize grow up 300, move scratchpad;
-bindsym $mod+i  [instance="termite" title="quick_term"] scratchpad show
+bindsym $mod+i  [title="quick_term"] scratchpad show
 
 # Relaunch floating terminal if you goof and close it
 bindsym $mod+shift+i exec --no-startup-id $term -t quick_term
@@ -65,7 +65,7 @@ bindsym $mod+shift+i exec --no-startup-id $term -t quick_term
 exec --no-startup-id $term -t Music -e pianobar
 for_window [title="Music"] floating enable, move scratchpad, scratchpad show;
 for_window [title="Music"] resize grow left 100, resize grow right 100, resize grow down 50, resize grow up 0, move scratchpad;
-bindsym $mod+m  [instance="termite" title="Music"] scratchpad show
+bindsym $mod+m  [title="Music"] scratchpad show
 
 # Relaunch floating music terminal if you done goofed and closed it.
 bindsym $mod+Shift+m exec --no-startup-id $term -t Music -e pianobar
@@ -120,7 +120,7 @@ bindsym $mod+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 # Will NOT show floating terminal window
 
-bindsym $mod+Shift+minus [instance="^(?!termite).*$"] scratchpad show, floating disable
+bindsym $mod+Shift+minus [title="^(?!(Music|quick_term)).*$"] scratchpad show, floating disable
 
 bindsym $mod+y exec bash ~/Scripts/invert_qute.sh
 
@@ -196,9 +196,11 @@ mode "Launch" {
 	bindsym r exec --no-startup-id "i3-sensible-terminal -e ranger", mode "default"
 	bindsym e exec --no-startup-id "emacsclient -c", mode "default"
 	bindsym o exec --no-startup-id "emacsclient -c ~/org/sems21.org", mode "default"
-	bindsym d exec rofi -show drun -matching fuzzy -terminal /usr/bin/termite, mode "default"
+	bindsym d exec ~/.config/rofi/bin/launcher_text, mode "default"
+	#bindsym d exec rofi -show drun -matching fuzzy -terminal /usr/bin/termite, mode "default"
 	bindsym s exec rofi -show ssh -matching fuzzy -terminal /usr/bin/termite, mode "default"
-	bindsym i exec rofi -show window -matching fuzzy -terminal /usr/bin/termite, mode "default"
+	bindsym i exec ~/.config/rofi/bin/launcher_text, mode "default"
+	#bindsym i exec rofi -show window -matching fuzzy -terminal /usr/bin/termite, mode "default"
 
 # back to normal: Enter or Escape
 	bindsym Return mode "default"

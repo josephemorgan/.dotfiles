@@ -6,6 +6,8 @@
 
 config_version: 2
 settings:
+  backend:
+    global: webengine
   bindings.commands:
     global:
       normal: null
@@ -21,7 +23,7 @@ settings:
     https://voice.google.com: true
   content.media.video_capture:
     https://voice.google.com: true
-  content.notifications:
+  content.notifications.enabled:
     https://1337x.to: false
     https://bilgebuysag.cam: false
     https://linuxize.com: false

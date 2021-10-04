@@ -64,7 +64,7 @@ if [[ -f /usr/bin/i3 ]] ; then
 	~/Scripts/make_local_i3_config
 fi
 
-export term="xterm-256color"
+export term="/bin/alacritty"
 if [[ "$TERM" == "dumb" ]]; then
 	unsetopt zle
 	unsetopt prompt_cr
@@ -77,9 +77,25 @@ fi
 if [[ "${HOST}" == "jupiter" ]]; then
 	sh /home/joe/.dotfiles/zsh/.zshrc_jupiter
 fi
-if [[ "${HOST}" == "Illuvitar" ]]; then
+if [[ "${HOST}" == "Iluvatar" ]]; then
 	sh /home/joe/.dotfiles/zsh/.zshrc_illuvitar
 fi
 if [[ "${HOST}" == "Mithrandir" ]]; then
 	sh /home/joe/.dotfiles/zsh/.zshrc_mithrandir
 fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/joe/.local/bin/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/joe/.local/bin/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/joe/.local/bin/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/joe/.local/bin/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

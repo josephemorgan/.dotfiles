@@ -10,15 +10,14 @@ configuration {
     background-color: #00000065;
     border-color: #00000000;
     text-color: #EFEFEF;
-    font: "SF Pro Text 16";
+    font: "SF Pro Text 14";
 }
  
 #window {
     border: 0;
     border-radius: 4px;
     padding: 40;
-    width: 30%;
-    height: 50%;
+    position: 1;
 }
  
 #mainbox {
