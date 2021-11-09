@@ -40,7 +40,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 
 " IDE-like debugging
-Plug 'puremourning/vimspector'
+" Plug 'puremourning/vimspector'
 
 " Advaned syntax highlighting
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -84,6 +84,9 @@ Plug 'tikhomirov/vim-glsl'
 
 " Language Pack
 Plug 'sheerun/vim-polyglot'
+
+" Git intigration
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
