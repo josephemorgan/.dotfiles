@@ -86,6 +86,9 @@ Plug 'tikhomirov/vim-glsl'
 " Language Pack
 Plug 'sheerun/vim-polyglot'
 
+" Git intigration
+Plug 'tpope/vim-fugitive'
+
 call plug#end()
 
 

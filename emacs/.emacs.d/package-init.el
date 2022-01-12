@@ -1,95 +1,111 @@
-;;; package-init.el --- Initializes emacs packages
-;;; Commentary:
-;; 
-
 (require 'package)
-;;; Code:
 
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
-;;; org-cliplink
-(use-package org-cliplink
-  :ensure t
-  )
+(defun config/org-font-setup ()
+  (org-indent-mode)
+  (org-superstar-mode)
+  (visual-line-mode 1)
+  (variable-pitch-mode 1)
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
-;;; yasnippet
-(use-package yasnippet
-  :ensure t
-  :config
-  (yas-global-mode 1))
+  ;; Set faces for heading levels
+  (dolist (face '((org-level-1 . 1.2)
+                  (org-level-2 . 1.1)
+                  (org-level-3 . 1.05)
+                  (org-level-4 . 1.0)
+                  (org-level-5 . 1.1)
+                  (org-level-6 . 1.1)
+                  (org-level-7 . 1.1)
+                  (org-level-8 . 1.1)))
+    (set-face-attribute (car face) nil :font "NotoSans" :weight 'regular :height (cdr face)))
 
-(use-package yasnippet-snippets
-  :after yasnippet
-  :ensure t)
+  ;; Ensure that anything that should be fixed-pitch in Org files appears that way
+  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
+  (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
+  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
+  (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch))
 
-;;; DUMB-JUMP
-(use-package dumb-jump
-  :ensure t
-  :config
-  (dumb-jump-mode))
-
-;;; WHICH-KEY
-(use-package which-key
-  :ensure t
-  :config
-  (which-key-mode))
-
-;;; vscdark-theme
-(use-package vscdark-theme
-  :ensure t
-  :config
-  (load-theme 'vscdark t))
-
-;;; MAGIT
-(use-package magit
-  :ensure t
-  :config
-  (global-set-key (kbd "C-x g") 'magit-status)
-  )
-
-;;; DIMINISH
-(use-package diminish :defer t
-  :ensure t
-  )
-
-;;; ORG
 (use-package org
   :ensure t
-  :config
-  (setq org-agenda-files '("~/org/"))
-  (setq org-startup-indented 1)
-  (setq org-startup-folded 1)
-  (setq org-default-notes-file (concat org-directory "/inbox.org"))
-  (setq org-agenda-window-setup 'only-window)
-  (setq org-export-with-section-numbers nil)
-  (setq org-deadline-warning-days 28)
-  (setq org-agenda-custom-commands '(("D" "Upcoming Deadlines" tags "DEADLINE>=\"<today>\"")))
-  (setq org-file-apps '((auto-mode . emacs)
-                        (directory . emacs)
-                        ("\\.mm\\'" . default)
-                        ("\\.x?html?\\'" . default)
-                        ("\\.pdf\\'" . "zathura \"%s\"")))
+  :config (setq org-ellipsis " ▼"
+                org-hide-emphasis-markers t
+                org-agenda-files '("~/org/")
+                org-startup-indented 1
+                org-startup-folded 1
+                org-default-notes-file (concat org-directory "/inbox.org")
+                org-agenda-window-setup 'only-window
+                org-export-with-section-numbers nil
+                org-deadline-warning-days 28
+                org-agenda-custom-commands '(("D" "Upcoming Deadlines" tags "DEADLINE>=\"<today>\""))
+                org-file-apps '((auto-mode . emacs)
+                                (directory . emacs)
+                                ("\\.mm\\'" . default)
+                                ("\\.x?html?\\'" . default)
+                                ("\\.pdf\\'" . "zathura \"%s\"")))
   (define-key global-map "\C-cc" 'org-capture)
   (global-set-key (kbd "C-c l") 'org-store-link)
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
-  (org-babel-do-load-languages 'org-babel-load-languages '((C . t) (java . t) (shell . t) (R . t))))
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((C . t)
+     (java . t)
+     (shell . t)
+     (emacs-lisp . t)
+     (python . t)))
+  (setq org-confirm-babel-evaluate nil)
+  (require 'org-tempo)
+  (add-to-list 'org-structure-template-alist  '("sh" . "src shell"))
+  (add-to-list 'org-structure-template-alist  '("el" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist  '("py" . "src python"))
+  (add-hook 'org-mode-hook #'config/org-font-setup)
+  (add-hook 'org-mode-hook #'turn-on-flyspell))
 
-;;; EVIL
+(use-package org-superstar
+  :after org
+  :config
+  (setq org-superstar-headline-bullets-list '("◉" "○" "●" "○" "●" "○" "●")))
+
+(defun config/visual-fill-column-setup()
+  (setq visual-fill-column-width 120
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode))
+
+(use-package visual-fill-column
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook #'config/visual-fill-column-setup))
+
+(use-package org-cliplink
+  :ensure t)
+
 (use-package evil
   :ensure t
   :init
   (setq evil-want-C-i-jump 't)
-  (setq evil-want-keybinding nil))
-  :config
+  (setq evil-want-keybinding nil)
   (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
+  :config
   (evil-mode 1)
+  (global-undo-tree-mode)
+  (evil-set-undo-system 'undo-tree))
 
 (use-package evil-collection
   :after evil
@@ -100,21 +116,40 @@
 (use-package evil-org
   :ensure t
   :after org
-  :hook
-  (org-mode . (lambda () (evil-org-mode)))
+  :hook (org-mode . (lambda () evil-org-mode))
   :config
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys))
 
-;;; ALL THE ICONS
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-global-mode 1))
+
+(use-package yasnippet-snippets
+  :after yasnippet
+  :ensure t)
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
+
+(use-package magit
+  :ensure t
+  :config
+  (global-set-key (kbd "C-x g") 'magit-status))
+
+(use-package diminish
+  :defer t
+  :ensure t)
+
 (use-package all-the-icons :ensure t)
 
-;;; IBUFFER
 (use-package ibuffer
   :ensure t
   :bind (("C-x C-b" . ibuffer)))
 
-;; IVY
 (use-package ivy
   :ensure t
   :bind (("C-s" . swiper)
@@ -132,17 +167,13 @@
          ("C-d" . ivy-reverse-i-search-kill))
   :init (ivy-mode 1))
 
-;;; IVY-RICH
 (use-package ivy-rich
   :ensure t
   :after ivy
   :init (ivy-rich-mode 1)
   :custom
-  (ivy-virtual-abbreviate 'full
-                          ivy-rich-switch-buffer-align-virtual-buffer t
-                          ivy-rich-path-style 'abbrev))
+  (ivy-virtual-abbreviate 'full-ivy-rich-path-style 'abbrev))
 
-;;; COUNSEL
 (use-package counsel
   :ensure t
   :after ivy
@@ -151,12 +182,10 @@
   (counsel-projectile-mode t)
   :bind (("C-c k" . counsel-ag)))
 
-;;; SWIPER
 (use-package swiper
   :ensure t
   :after ivy)
 
-;;; projectile
 (use-package projectile
   :ensure t
   :diminish projectile-mode
@@ -169,49 +198,13 @@
     (setq projectile-project-search-path '("~/dev")))
   (setq projectile-switch-project-action #'projectile-dired))
 
-;;; emmet-mode
-(use-package emmet-mode
-  :ensure t
-  )
-
-;;; web-mode
-(use-package web-mode
-  :ensure t
-  :config
-  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-  )
-
-;;; ELPY
 (use-package elpy
   :ensure t
   :defer t
   :init
   (elpy-enable))
 
-;;; FLYCHECK
-(use-package flycheck
-  :ensure t
-  :init
-  (global-flycheck-mode))
-
-;;; BLACKEN
 (use-package blacken :ensure t)
-
-;;; CALFW
-(use-package calfw :ensure t)
-
-(use-package latex-preview-pane
-  :ensure t
-  :defer t
-  :config
-  (latex-preview-pane-enable))
 
 (use-package helpful
   :ensure t
@@ -223,6 +216,11 @@
   ([remap describe-command] . helpful-command)
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
+
+(use-package vscdark-theme
+  :ensure t
+  :config
+  (load-theme 'vscdark t))
 
 (use-package doom-themes
   :ensure t
@@ -238,12 +236,29 @@
   :config (setq doom-modeline-icon (display-graphic-p))
   :hook (after-init . doom-modeline-mode))
 
-(use-package ivy-hydra
-  :ensure t)
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode))
 
-(use-package pdf-tools
-  :ensure t)
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory (file-truename "~/roam"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ;; Dailies
+         ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  (org-roam-db-autosync-mode)
+  ;; If using org-roam-protocol
+  (require 'org-roam-protocol))
 
-(provide 'package-init)
-
-;;; package-init.el ends here
+(add-to-list 'display-buffer-alist
+             '("\\org-roam\\*"
+               (display-buffer-in-direction)
+               (direction . bottom)
+               (window-height . 0.25)))
