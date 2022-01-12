@@ -1,3 +1,4 @@
+let g:python3_host_prog = "/opt/homebrew/bin/python3.9"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -40,7 +41,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 
 " IDE-like debugging
-Plug 'puremourning/vimspector'
+" Plug 'puremourning/vimspector'
 
 " Advaned syntax highlighting
 Plug 'octol/vim-cpp-enhanced-highlight'
