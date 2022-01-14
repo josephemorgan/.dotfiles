@@ -50,7 +50,7 @@
    '(("melpa" . "http://melpa.org/packages/")
      ("gnu" . "https://elpa.gnu.org/packages/")))
  '(package-selected-packages
-   '(-t org-roam evil-org visual-fill-column org-superstar srefactor racket-mode pdf-tools ivy-hydra evil-collection helpful latex-preview-pane org-fragtog-mode org-fragtog web-mode emmet-mode color-identifiers-mode ycmd counsel-projectile projectile vscdark-theme yoshi-theme kaolin-themes spacemacs-theme humanoid-themes zenburn noctilux-theme gruvbox-theme org-cliplink fontawesome evil-better-visual-line company-c-headers yasnippet-snippets company-mode dumb-jump which-key auctex-lua auctex-latexmk auctex autex magit swiper ivy-rich counsel diminish flychecK flycheck elpy helm zenburn-theme use-package smart-tabs-mode jbeans-theme ivy evil doom-themes doom-modeline company))
+   '(org-roam-ui websocket -t org-roam evil-org visual-fill-column org-superstar srefactor racket-mode pdf-tools ivy-hydra evil-collection helpful latex-preview-pane org-fragtog-mode org-fragtog web-mode emmet-mode color-identifiers-mode ycmd counsel-projectile projectile vscdark-theme yoshi-theme kaolin-themes spacemacs-theme humanoid-themes zenburn noctilux-theme gruvbox-theme org-cliplink fontawesome evil-better-visual-line company-c-headers yasnippet-snippets company-mode dumb-jump which-key auctex-lua auctex-latexmk auctex autex magit swiper ivy-rich counsel diminish flychecK flycheck elpy helm zenburn-theme use-package smart-tabs-mode jbeans-theme ivy evil doom-themes doom-modeline company))
  '(projectile-completion-system 'ivy nil nil "Customized with use-package projectile"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
