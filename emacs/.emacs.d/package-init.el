@@ -27,7 +27,7 @@
                   (org-level-6 . 1.1)
                   (org-level-7 . 1.1)
                   (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "NotoSans" :weight 'regular :height (cdr face)))
+    (set-face-attribute (car face) nil :font "Noto Sans" :weight 'regular :height (cdr face)))
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
   (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
@@ -53,6 +53,7 @@
                 org-agenda-window-setup 'only-window
                 org-export-with-section-numbers nil
                 org-deadline-warning-days 28
+                org-format-latex-options (plist-put org-format-latex-options :scale 1.25)
                 org-agenda-custom-commands '(("D" "Upcoming Deadlines" tags "DEADLINE>=\"<today>\""))
                 org-file-apps '((auto-mode . emacs)
                                 (directory . emacs)
@@ -99,11 +100,17 @@
 (use-package evil
   :ensure t
   :init
+  (setq evil-respect-visual-line-mode t) 
   (setq evil-want-C-i-jump 't)
   (setq evil-want-keybinding nil)
-  (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
   :config
-  (evil-mode 1)
+  (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
+  (evil-mode 1))
+
+(use-package undo-tree
+  :ensure t
+  :after evil
+  :config
   (global-undo-tree-mode)
   (evil-set-undo-system 'undo-tree))
 
@@ -174,12 +181,16 @@
   :custom
   (ivy-virtual-abbreviate 'full-ivy-rich-path-style 'abbrev))
 
+(use-package counsel-projectile
+  :ensure t)
+
 (use-package counsel
   :ensure t
   :after ivy
   :config
   (counsel-mode t)
   (counsel-projectile-mode t)
+  :config (setq ivy-initial-inputs-alist nil)
   :bind (("C-c k" . counsel-ag)))
 
 (use-package swiper
@@ -255,10 +266,33 @@
   :config
   (org-roam-db-autosync-mode)
   ;; If using org-roam-protocol
-  (require 'org-roam-protocol))
+  (require 'org-roam-protocol)
 
 (add-to-list 'display-buffer-alist
              '("\\org-roam\\*"
                (display-buffer-in-direction)
                (direction . bottom)
                (window-height . 0.25)))
+
+(setq org-roam-dailies-directory "daily/")
+
+(setq org-roam-dailies-capture-templates
+      '(("d" "default" entry
+         "* %?"
+         :target (file+head "%<%Y-%m-%d>.org"
+                            "#+title: %<%Y-%m-%d>\n")))))
+
+(use-package websocket
+  :after org-roam)
+
+(use-package org-roam-ui
+  :after org-roam ;; or :after org
+  ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+  ;;         a hookable mode anymore, you're advised to pick something yourself
+  ;;         if you don't care about startup time, use
+  ;;  :hook (after-init . org-roam-ui-mode)
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
