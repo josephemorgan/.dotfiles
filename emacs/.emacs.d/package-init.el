@@ -70,17 +70,20 @@
      (java . t)
      (shell . t)
      (emacs-lisp . t)
-     (python . t)))
+     (python . t)
+     (sql . t)
+     (js . t)))
   (setq org-confirm-babel-evaluate nil)
   (require 'org-tempo)
   (add-to-list 'org-structure-template-alist  '("sh" . "src shell"))
   (add-to-list 'org-structure-template-alist  '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist  '("py" . "src python"))
+  (add-to-list 'org-structure-template-alist  '("sql" . "src sql"))
   (add-hook 'org-mode-hook #'config/org-font-setup)
   (add-hook 'org-mode-hook #'turn-on-flyspell))
 
 (use-package org-superstar
-  :after org
+  :after org/la
   :config
   (setq org-superstar-headline-bullets-list '("◉" "○" "●" "○" "●" "○" "●")))
 
