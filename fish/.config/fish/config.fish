@@ -1,8 +1,5 @@
-if status is-interactive
-    # Commands to run in interactive sessions can go here
-end
-
 set fish_greeting
+set -x ANROID_HOME $HOME/Android/Sdk
 
 switch (uname)
 	case Darwin

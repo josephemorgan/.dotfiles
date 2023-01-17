@@ -5,7 +5,7 @@
 set $mod Mod4
 set $term alacritty
 set $flash --no-startup-id bash ~/Scripts/flash_win.sh
-set $main DP-0
+set $main DP-2
 set $aux HDMI-0
 
 # Name workspaces
@@ -37,6 +37,9 @@ workspace $atag5 output $aux
 # Assign Workspaces
 assign [class="^discord$"] $atag4
 assign [class="jetbrains"] $tag2
+
+# Make android emulator floating
+for_window [title=".*Emulator.*"] floating enable
 
 # Autostart applications
 exec --no-startup-id /usr/bin/discord

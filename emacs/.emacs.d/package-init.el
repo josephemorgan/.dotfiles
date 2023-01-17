@@ -79,11 +79,12 @@
   (add-to-list 'org-structure-template-alist  '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist  '("py" . "src python"))
   (add-to-list 'org-structure-template-alist  '("sql" . "src sql"))
+  (add-to-list 'org-structure-template-alist  '("js" . "src js"))
   (add-hook 'org-mode-hook #'config/org-font-setup)
   (add-hook 'org-mode-hook #'turn-on-flyspell))
 
 (use-package org-superstar
-  :after org/la
+  :after org
   :config
   (setq org-superstar-headline-bullets-list '("◉" "○" "●" "○" "●" "○" "●")))
 
@@ -104,7 +105,7 @@
   :ensure t
   :init
   (setq evil-respect-visual-line-mode t) 
-  (setq evil-want-C-i-jump 't)
+  (setq evil-want-C-i-jump nil)
   (setq evil-want-keybinding nil)
   :config
   (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))

@@ -2,15 +2,16 @@
 # Sets launch commands to be executed when xserver starts
 
 # Disable touchpad while typing
-syndaemon -i 1 -t -K -R -d &
-
-# Set keypad delay and repeat
-xset  r rate 200 60
+# syndaemon -i 1 -t -K -R -d &
 
 # Hide mouse when not in use
-unclutter &
+# unclutter &
+
+#$HOME/Scripts/make_local_i3_config
+$HOME/Scripts/configure_display
 
 # Preferred Desktop Environment
-$HOME/Scripts/make_local_i3_config
+#exec i3
 
-exec i3
+sxhkd &
+exec bspwm
