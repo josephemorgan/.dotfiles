@@ -1,0 +1,6 @@
+require('plugins')
+require('basic')
+require('keybindings')
+require('lsp')
+require('config.dap').setup()
+require('config.tree-sitter')
