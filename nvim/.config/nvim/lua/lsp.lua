@@ -9,9 +9,10 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
   require('cmp_nvim_lsp').default_capabilities()
   )
 
-lspconfig.sumneko_lua.setup({})
+--lspconfig.sumneko_lua.setup({})
 lspconfig.tsserver.setup({})
 lspconfig.angularls.setup({})
+lspconfig.yamlls.setup({})
 
 local keymap = {
   s = {
