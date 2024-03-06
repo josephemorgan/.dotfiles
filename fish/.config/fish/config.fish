@@ -1,5 +1,8 @@
 set fish_greeting
-set -x ANROID_HOME $HOME/Android/Sdk
+
+if test -n "$(tmux has-session -t main)"
+	tmux new-session -s main -d
+end
 
 switch (uname)
 	case Darwin
