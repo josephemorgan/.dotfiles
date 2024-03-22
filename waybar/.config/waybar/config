@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top", 
-    "height": 20,
+    "height": 40,
     "spacing": 4,
     "modules-left": ["hyprland/workspaces", "hyprland/submap"],
     "modules-right": ["network", "cpu", "memory", "temperature", "clock"],

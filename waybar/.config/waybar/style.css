@@ -7,7 +7,7 @@ box.module {
     border: none;
     border-radius: 0;
     font-family: Roboto, Helvetica, Arial, sans-serif;
-    font-size: 12px;
+    font-size: 24px;
     min-height: 0;
     font-weight: bold;
     padding: 0px;
@@ -20,7 +20,7 @@ window#waybar {
 }
 
 #workspaces button {
-    padding: 0 5px;
+    padding: 0 20px;
     background: transparent;
     color: white;
     border-bottom: 3px solid transparent;
@@ -38,11 +38,11 @@ window#waybar {
 }
 
 .modules-left {
-    padding: 0px 10px;
+    padding: 0px 30px;
 }
 
 .modules-right {
-    padding: 0px 10px;
+    padding: 0px 30px;
 }
 
 #memory,
