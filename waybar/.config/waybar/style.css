@@ -1,52 +1,59 @@
-box.module {
-    margin: 100px;
-    padding: 100px;
-}
-
 * {
     border: none;
     border-radius: 0;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-    font-size: 24px;
+    font-family: "FiraCode Nerd Font Propo";
+    font-size: 26px;
     min-height: 0;
     font-weight: bold;
-    padding: 0px;
-    margin: 0px;
 }
 
 window#waybar {
-    background: rgba(43, 48, 59, 0.5);
+    background: rgba(17, 0, 46, 0);
     color: white;
-}
-
-#workspaces button {
-    padding: 0 20px;
-    background: transparent;
-    color: white;
-    border-bottom: 3px solid transparent;
-    font-weight: bold;
-}
-
-#workspaces button.active {
-    background: #64727D;
-    border-bottom: 3px solid white;
-}
-
-#workspaces button.empty {
-  color: #aaaaaa;
-  font-weight: normal;
 }
 
 .modules-left {
-    padding: 0px 30px;
+    padding-left: 50px;
 }
 
 .modules-right {
-    padding: 0px 30px;
+    padding-right: 50px;
 }
 
-#memory,
-#cpu,
+#workspaces button {
+    padding: 5px 6px;
+    margin: 2px 5px;
+    min-width: 30px;
+    min-height: 30px;
+    background-color: rgb(135,120,198);
+    border-radius: 100px;
+    transition: all 0.5s ease;
+}
+
+#workspaces button.active {
+    background-color: rgb(227,159,207);
+    min-width: 60px;
+    transition: all 0.5s ease;
+}
+
+#window {
+    background-color: rgb(32,14,59);
+    padding: 0px 30px;
+    border-radius: 100px;
+}
+
 #clock {
-	padding: 0 10px;
+    background-color: rgb(83,53,159);
+    padding: 0px 30px;
+    border-radius: 100px;
+}
+
+#custom-notification {
+    background-color: rgb(103,49,148);
+    padding: 0px 30px;
+    border-radius: 100px;
+    margin: 0px 30px;
+}
+
+#custom-notification #icon {
 }
