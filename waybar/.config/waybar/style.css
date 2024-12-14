@@ -1,58 +1,54 @@
 * {
-    border: none;
-    border-radius: 0;
-    font-family: "FiraCode Nerd Font Propo";
-    font-size: 26px;
-    min-height: 0;
-    font-weight: bold;
+	border: none;
+	font-family: "FiraCode Nerd Font Propo";
+	font-size: 24px;
+	min-height: 0;
 }
 
 window#waybar {
-    background: rgba(17, 0, 46, 0);
-    color: white;
+	border-radius: 100px;
+	background: rgba(0, 10, 22, 0.75);
+	color: white;
 }
 
 .modules-left {
-    padding-left: 50px;
+	padding-left: 20px;
 }
 
 .modules-right {
-    padding-right: 50px;
+	padding-right: 20px;
 }
 
 #workspaces button {
-    padding: 5px 6px;
-    margin: 2px 5px;
-    min-width: 30px;
-    min-height: 30px;
-    background-color: rgb(135,120,198);
-    border-radius: 100px;
-    transition: all 0.5s ease;
+	background: rgba(96, 96, 96, 1);
+	padding: 0px 0px;
+	margin: 8px 5px;
+	min-width: 30px;
+	min-height: 30px;
+	border-radius: 100px;
+	transition: all 0.5s ease;
 }
 
 #workspaces button.active {
-    background-color: rgb(227,159,207);
-    min-width: 60px;
-    transition: all 0.5s ease;
+	background: rgba(200, 200, 200, 1);
+	min-width: 50px;
+	transition: all 0.5s ease;
 }
 
 #window {
-    background-color: rgb(32,14,59);
-    padding: 0px 30px;
-    border-radius: 100px;
+	padding: 0px 30px;
 }
 
 #clock {
-    background-color: rgb(83,53,159);
-    padding: 0px 30px;
-    border-radius: 100px;
+	padding: 0px 30px;
+}
+
+#cpu {
+	padding: 0px 30px;
 }
 
 #custom-notification {
-    background-color: rgb(103,49,148);
-    padding: 0px 30px;
-    border-radius: 100px;
-    margin: 0px 30px;
+	padding-right: 5px;
 }
 
 #custom-notification #icon {

@@ -8,7 +8,7 @@
 # unclutter &
 
 #$HOME/Scripts/make_local_i3_config
-$HOME/Scripts/configure_display
+#$HOME/Scripts/configure_display
 
 # Preferred Desktop Environment
 #exec i3

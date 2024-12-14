@@ -6,3 +6,5 @@ switch (uname)
 end
 
 zoxide init fish | source
+
+. /usr/share/LS_COLORS/dircolors.csh
