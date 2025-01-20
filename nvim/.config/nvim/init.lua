@@ -16,6 +16,13 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 require("keybinds").setup()
 
+if vim.g.neovide then
+	require("neovide").setup()
+else
+	-- Set transparent background for terminal
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+end
+
 vim.opt.termguicolors = true
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
@@ -23,12 +30,19 @@ vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.background = "dark"
 vim.opt.ruler = true
-vim.opt.autoindent = true
 vim.opt.showmatch = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
-vim.opt.expandtab = true
 vim.opt.foldmethod = "syntax"
 vim.opt.foldnestmax = 1
 vim.opt.foldlevel = 1
+vim.opt.expandtab = false
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.formatoptions = "jcroql"
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "python",
+	callback = function()
+		vim.opt_local.expandtab = true
+		vim.opt_local.softtabstop = 4
+	end,
+})

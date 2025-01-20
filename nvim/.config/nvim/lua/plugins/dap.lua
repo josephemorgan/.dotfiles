@@ -1,7 +1,6 @@
 return {
 	"mfussenegger/nvim-dap",
 	dependencies = {
-		"rcarriga/cmp-dap",
 		"mxsdev/nvim-dap-vscode-js",
 		{
 			"microsoft/vscode-js-debug",
