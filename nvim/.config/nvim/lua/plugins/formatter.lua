@@ -29,9 +29,9 @@ return {
 				jsonc = {
 					require("formatter.filetypes.json").jq,
 				},
-                python = {
-                    require('formatter.filetypes.python').autopep8
-                },
+				python = {
+					require("formatter.filetypes.python").autopep8,
+				},
 				["*"] = {
 					require("formatter.filetypes.any").remove_trailing_whitespace,
 				},

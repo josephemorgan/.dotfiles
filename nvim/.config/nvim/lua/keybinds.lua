@@ -42,8 +42,9 @@ return {
 				{ "<c-p>", telescope.find_files, desc = "Find files" },
 				{ "<leader>pb", telescope.buffers, desc = "List [b]uffers" },
 				{ "<leader>pt", require("telescope.builtin").builtin, desc = "[t]elescope" },
-				{ "<leader>pf", require("telescope").extensions.file_browser.file_browser, desc = "browse [f]iles" },
-				-- { "<leader>pf", require("telescope").extensions.flutter.commands, desc = "[f]lutter commands" },
+				{ "<leader>pp", require("telescope").extensions.projects.projects, desc = "[p]rojects" },
+				{ "<leader>pr", require("telescope").extensions.file_browser.file_browser, desc = "b[r]owse files" },
+				{ "<leader>pf", require("telescope").extensions.flutter.commands, desc = "[f]lutter commands" },
 			},
 
 			-- File Editing
