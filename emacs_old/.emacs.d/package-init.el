@@ -9,6 +9,27 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+(use-package lsp-mode
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (python-mode . lsp)
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+;; optionally
+(use-package lsp-ui :commands lsp-ui-mode)
+;; if you are ivy user
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
+;; optional if you want which-key integration
+(use-package which-key
+  :config
+  (which-key-mode))
+
 (defun config/org-font-setup ()
   (org-indent-mode)
   (org-superstar-mode)
@@ -71,15 +92,12 @@
      (shell . t)
      (emacs-lisp . t)
      (python . t)
-     (sql . t)
      (js . t)))
   (setq org-confirm-babel-evaluate nil)
   (require 'org-tempo)
   (add-to-list 'org-structure-template-alist  '("sh" . "src shell"))
   (add-to-list 'org-structure-template-alist  '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist  '("py" . "src python"))
-  (add-to-list 'org-structure-template-alist  '("sql" . "src sql"))
-  (add-to-list 'org-structure-template-alist  '("js" . "src js"))
   (add-hook 'org-mode-hook #'config/org-font-setup)
   (add-hook 'org-mode-hook #'turn-on-flyspell))
 
@@ -105,7 +123,7 @@
   :ensure t
   :init
   (setq evil-respect-visual-line-mode t) 
-  (setq evil-want-C-i-jump nil)
+  (setq evil-want-C-i-jump 't)
   (setq evil-want-keybinding nil)
   :config
   (setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
