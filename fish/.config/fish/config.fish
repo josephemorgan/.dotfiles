@@ -7,4 +7,7 @@ end
 
 zoxide init fish | source
 
-. /usr/share/LS_COLORS/dircolors.csh
+switch (uname)
+	case Linux
+		. /usr/share/LS_COLORS/dircolors.csh
+end
