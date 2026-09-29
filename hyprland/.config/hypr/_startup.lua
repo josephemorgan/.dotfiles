@@ -6,10 +6,17 @@ hl.monitor({
 })
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = "auto" })
 
--- Top-level code runs on every config (re)load, like the old `exec =`
-hl.exec_cmd("uwsm app -- ~/Scripts/wallpaper_shuff.sh")
+local wallpaper = "uwsm app -- ~/Scripts/wallpaper_shuff.sh"
+
+-- Stand-in for the old `exec =` (runs on start and every reload). Top-level
+-- code runs during config parsing, which on first launch is before any monitor
+-- exists and swww-daemon can't connect, so only run it here on reloads.
+if #hl.get_monitors() > 0 then
+    hl.exec_cmd(wallpaper)
+end
 
 hl.on("hyprland.start", function()
+    hl.exec_cmd(wallpaper)
     hl.exec_cmd("uwsm app -- ~/Scripts/import_env tmux")
     hl.exec_cmd('uwsm app -- tmux new-session -s "main"')
     hl.exec_cmd("uwsm app -- waybar")
