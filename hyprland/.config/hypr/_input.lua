@@ -1,0 +1,8 @@
+hl.config({
+    input = {
+        sensitivity   = -0.125,
+        accel_profile = "flat",
+        repeat_rate   = 30,
+        repeat_delay  = 300,
+    },
+})

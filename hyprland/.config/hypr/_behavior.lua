@@ -1,0 +1,8 @@
+hl.config({
+    dwindle = {
+        -- pseudotile = true,
+        default_split_ratio = 1.236,
+        preserve_split      = true,
+        force_split         = 2,
+    },
+})
